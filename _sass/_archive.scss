@@ -1,0 +1,167 @@
+@use 'variables' as *;
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid $rule-strong;
+  border-radius: 4px;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.02);
+  margin-bottom: 24px;
+  font-family: $font-mono;
+  transition: border-color 0.15s;
+
+  &:focus-within {
+    border-color: $accent;
+  }
+
+  .prompt {
+    color: $green;
+    font-size: 14px;
+  }
+
+  .grep-input {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .grep-prefix,
+  .grep-suffix {
+    color: $ink-mute;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  input {
+    min-width: 2ch;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    color: $green;
+    font-family: $font-mono;
+    font-size: 14px;
+
+    &::placeholder {
+      color: $ink-mute;
+    }
+  }
+
+  .kbd {
+    font-size: 11px;
+    color: $ink-mute;
+    border: 1px solid $rule-strong;
+    border-radius: 2px;
+    padding: 2px 6px;
+  }
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin-bottom: 32px;
+  font-family: $font-mono;
+}
+
+.chip {
+  font-size: 12px;
+  padding: 8px 14px;
+  cursor: pointer;
+  color: $ink-soft;
+  border-right: 1px solid $rule;
+  transition: color 0.15s, background 0.15s;
+
+  &:hover {
+    color: $accent-bright;
+  }
+
+  &.active {
+    color: $bg;
+    background: $accent;
+  }
+
+  &:first-of-type {
+    border-left: 1px solid $rule;
+  }
+}
+
+.archive-list {
+  font-family: $font-sans;
+  border-top: 1px solid $rule;
+}
+
+.archive-row {
+  display: grid;
+  grid-template-columns: 130px 1fr 80px;
+  gap: 28px;
+  padding: 18px 8px;
+  border-bottom: 1px solid $rule;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.12s;
+
+  &:hover {
+    background: rgba(122, 162, 255, 0.05);
+
+    h3 {
+      color: $accent-bright;
+    }
+  }
+
+  .date {
+    font-family: $font-mono;
+    font-size: 12px;
+    color: $ink-mute;
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+    transition: color 0.15s;
+  }
+
+  .rt {
+    font-family: $font-mono;
+    font-size: 12px;
+    color: $ink-mute;
+    text-align: right;
+  }
+}
+
+.archive-content {
+  padding: 40px $page-padding 80px;
+}
+
+.archive-stats {
+  display: flex;
+  gap: 32px;
+  font-family: $font-mono;
+  font-size: 12px;
+  color: $ink-mute;
+
+  .k {
+    color: $green;
+    margin-right: 8px;
+  }
+}
+
+@media (max-width: $bp-tablet) {
+  .archive-content {
+    padding: 24px $page-padding-mobile 48px;
+  }
+
+  .archive-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding: 14px 0;
+
+    .rt {
+      text-align: left;
+    }
+  }
+}

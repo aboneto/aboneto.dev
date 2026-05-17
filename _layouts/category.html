@@ -1,0 +1,40 @@
+---
+layout: default
+---
+
+<div class="cat-head">
+  <div class="crumb">~<span class="slash">/</span>aboneto.dev<span class="slash">/</span>categoria<span class="slash">/</span><span class="accent">{{ page.title }}</span></div>
+  <h1><span class="hash">#</span>{{ page.title }}</h1>
+  <div class="stats">
+    {% assign cat_posts = site.categories[page.title] %}
+    <span><span class="k">posts:</span>{{ cat_posts.size }}</span>
+    {% assign last_post = cat_posts.first %}
+    {% if last_post %}<span><span class="k">last_update:</span>{{ last_post.date | date: '%Y-%m-%d' }}</span>{% endif %}
+    {% assign total_read = 0 %}
+    {% for post in cat_posts %}
+      {% assign total_read = total_read | plus: post.reading_time %}
+    {% endfor %}
+    {% assign avg_read = total_read | divided_by: cat_posts.size %}
+    <span><span class="k">avg_read:</span>~{{ avg_read }}min</span>
+  </div>
+</div>
+
+<div class="latest latest--category">
+  <div class="section-head">
+    <h2><span class="punct">//</span> <span class="accent">all posts</span> <span class="punct">— ordered by date desc</span></h2>
+  </div>
+  {% for post in cat_posts %}
+  <a href="{{ post.url | relative_url }}" class="post-row">
+    <span class="num">[{{ forloop.index | prepend: '00' | slice: -2, 2 }}]</span>
+    <span class="date">{{ post.date | date: '%d %b %Y' | replace: ' ', '·' }}</span>
+    <div class="thumb">
+      {% include post-image.html slug=post.slug %}
+    </div>
+    <div>
+      <h3>{{ post.title }}</h3>
+      <p>{{ post.excerpt | strip_html | strip_newlines }}</p>
+    </div>
+    <span class="rt">~{{ post.reading_time }}min</span>
+  </a>
+  {% endfor %}
+</div>

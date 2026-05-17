@@ -1,0 +1,25 @@
+// Design tokens from mockup styles-terminal.css
+$bg: #0a1530;
+$bg-elev: #0d1a3a;
+$ink: #d8e1f5;
+$ink-soft: #9aa6c4;
+$ink-mute: #5c6890;
+$accent: #7aa2ff;
+$accent-bright: #b8d0ff;
+$green: #7ad6a3;
+$rule: rgba(255, 255, 255, 0.06);
+$rule-strong: rgba(255, 255, 255, 0.14);
+
+// Fonts
+$font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+$font-mono: 'IBM Plex Mono', monospace;
+
+// Spacing
+$page-padding: 56px;
+$page-padding-mobile: 20px;
+
+// Breakpoints
+$bp-mobile: 320px;
+$bp-tablet: 768px;
+$bp-desktop: 1024px;
+$bp-wide: 1440px;

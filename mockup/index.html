@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>aboneto.dev · exploración visual</title>
+  <link rel="stylesheet" href="styles-terminal.css" />
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; background: #f0eee9; font-family: 'IBM Plex Sans', system-ui, sans-serif; }
+    #root { height: 100%; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script src="blog-data.js"></script>
+  <script type="text/babel" src="design-canvas.jsx"></script>
+  <script type="text/babel" src="variant-terminal.jsx"></script>
+
+  <script type="text/babel">
+    const { DesignCanvas, DCSection, DCArtboard } = window;
+    const W = 1280;
+
+    function App() {
+      return (
+        <DesignCanvas
+          title="aboneto.dev"
+          subtitle="Editorial terminal · 5 pantallas · IBM Plex Sans + Mono · azul oscuro"
+        >
+          <DCSection
+            id="terminal"
+            title="Editorial terminal"
+            subtitle="Mono dominante, frontmatter YAML al inicio de cada post, prompts. Vibe IDE/dev manteniendo la lecturabilidad como prioridad."
+          >
+            <DCArtboard id="home" label="Home" width={W} height={2360}>
+              <window.TerminalHome />
+            </DCArtboard>
+            <DCArtboard id="post" label="Post" width={W} height={2120}>
+              <window.TerminalPost />
+            </DCArtboard>
+            <DCArtboard id="cat" label="Categoría" width={W} height={1900}>
+              <window.TerminalCategory />
+            </DCArtboard>
+            <DCArtboard id="archive" label="Archivo / búsqueda" width={W} height={1620}>
+              <window.TerminalArchive />
+            </DCArtboard>
+            <DCArtboard id="menu" label="Menú hamburguesa" width={W} height={900}>
+              <window.TerminalMenu />
+            </DCArtboard>
+          </DCSection>
+        </DesignCanvas>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>

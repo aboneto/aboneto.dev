@@ -1,0 +1,30 @@
+@use 'variables' as *;
+
+.reader-frontmatter {
+  font-family: $font-mono;
+  font-size: 13px;
+  line-height: 1.8;
+  color: $ink-soft;
+  padding: 18px 22px;
+  border: 1px solid $rule-strong;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.015);
+  margin-bottom: 36px;
+
+  .k {
+    color: $ink-mute;
+  }
+
+  .accent {
+    color: $accent;
+  }
+
+  .str {
+    color: $green;
+  }
+
+  .dashes {
+    color: $ink-mute;
+    user-select: none;
+  }
+}

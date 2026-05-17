@@ -1,0 +1,28 @@
+---
+layout: default
+---
+
+<article class="reader">
+  <div class="reader-head">
+    <div class="reader-frontmatter">
+      <div><span class="dashes">---</span></div>
+      <div><span class="k">title:</span> <span class="str">"{{ page.title }}"</span></div>
+      <div><span class="k">date:</span> <span class="accent">{{ page.date | date: '%Y-%m-%d' }}</span></div>
+      <div><span class="k">reading_time:</span> <span class="accent">{{ page.reading_time }}</span> min</div>
+      <div><span class="k">categories:</span> [{% for cat in page.categories %}<span class="str">"{{ cat }}"</span>{% unless forloop.last %}, {% endunless %}{% endfor %}]</div>
+      <div><span class="dashes">---</span></div>
+    </div>
+    <h1 class="reader-title">{{ page.title }}</h1>
+  </div>
+
+  {% if page.image %}
+  <figure class="reader-figure">
+    {% include post-image.html slug=page.slug %}
+    <figcaption>Cover · <span class="caption-accent">img/{{ page.image }}.webp</span></figcaption>
+  </figure>
+  {% endif %}
+
+  <div class="reader-body">
+    {{ content }}
+  </div>
+</article>

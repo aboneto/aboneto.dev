@@ -1,0 +1,97 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "code-reviewer": {
+      "description": "Reviews code for best practices and potential issues",
+      "mode": "subagent",
+      "model": "MiMo-V2.5-Pro",
+      "prompt": "You are a code reviewer. Focus on security, performance, and maintainability.",
+      "tools": {
+        "write": false,
+        "edit": false
+      }
+    }
+  },
+  "permission": {
+    "bash": {
+      "*": "ask",
+      "bundle exec jekyll *": "allow",
+      "./scripts/convert_to_webp.sh": "allow",
+      "ls *": "allow",
+      "pwd": "allow",
+      "tree *": "allow",
+      "grep *": "allow",
+      "cat *": "allow",
+      "head *": "allow",
+      "tail *": "allow",
+      "wc *": "allow",
+      "which *": "allow",
+      "whoami": "allow",
+      "date": "allow",
+      "mkdir *": "allow",
+      "git status": "allow",
+      "git log*": "allow",
+      "git diff*": "allow",
+      "git branch*": "allow",
+      "git show*": "allow",
+      "git remote*": "allow",
+      "git stash*": "allow",
+      "rtk cargo build": "allow",
+      "rtk cargo check": "allow",
+      "rtk cargo clippy": "allow",
+      "rtk cargo test": "allow",
+      "rtk tsc": "allow",
+      "rtk lint": "allow",
+      "rtk prettier --check": "allow",
+      "rtk jest": "allow",
+      "rtk vitest": "allow",
+      "rtk pytest": "allow",
+      "rtk git status": "allow",
+      "rtk git log*": "allow",
+      "rtk git diff*": "allow",
+      "rtk git show*": "allow",
+      "rtk git branch*": "allow",
+      "rtk git fetch": "allow",
+      "rtk git stash*": "allow",
+      "rtk gh pr view*": "allow",
+      "rtk gh pr checks": "allow",
+      "rtk gh run list": "allow",
+      "rtk gh issue list": "allow",
+      "rtk pnpm list": "allow",
+      "rtk pnpm outdated": "allow",
+      "rtk ls *": "allow",
+      "rtk read *": "allow",
+      "rtk grep *": "allow",
+      "rtk find *": "allow",
+      "rtk err *": "allow",
+      "rtk log *": "allow",
+      "rtk json *": "allow",
+      "rtk deps": "allow",
+      "rtk env": "allow",
+      "rtk summary *": "allow",
+      "rtk diff": "allow",
+      "rtk gain*": "allow",
+      "rtk discover": "allow",
+      "npx skills find *": "allow",
+      "openspec new change *": "allow",
+      "openspec status *": "allow",
+      "openspec instructions *": "allow",
+      "openspec list *": "allow",
+      "echo *": "allow"
+    }
+  },
+  "plugin": [
+    "opencode-browser"
+  ],
+  "mcp": {
+    "browsermcp": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@browsermcp/mcp@0.1.3"
+      ],
+      "enabled": true
+    }
+  }
+}

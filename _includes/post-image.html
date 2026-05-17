@@ -1,0 +1,7 @@
+{% assign img_slug = include.slug %}
+{% assign img_height = include.height | default: 220 %}
+{% assign img_lazy = include.lazy | default: true %}
+<div class="post-image" style="height: {{ img_height }}px">
+  <div class="post-image-grid"></div>
+  <div class="post-image-label">./img/{{ img_slug }}.webp</div>
+</div>

@@ -1,0 +1,28 @@
+{% assign author = site.data.author %}
+<section class="author">
+  <div class="author-grid">
+    <div class="author-photo">
+      {% if author.photo %}
+      <img src="{{ author.photo }}" alt="{{ author.name }}" loading="lazy">
+      {% else %}
+      <span class="initials">{{ author.initials }}</span>
+      {% endif %}
+    </div>
+    <div>
+      <div class="tag">// whoami</div>
+      <h2>{{ author.name }}</h2>
+      <div class="role">{{ author.role }}</div>
+      <p>{{ author.bio }}</p>
+    </div>
+    <dl class="author-meta">
+      <dt>location</dt>
+      <dd>{{ author.location }}</dd>
+      <dt>writes_about</dt>
+      <dd>arch · infra · ia · lead</dd>
+      <dt>contact</dt>
+      {% for link in author.links %}
+      <dd><a href="{{ link.href }}">→ {{ link.label | downcase }}</a></dd>
+      {% endfor %}
+    </dl>
+  </div>
+</section>

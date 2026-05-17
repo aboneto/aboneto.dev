@@ -1,0 +1,126 @@
+@use 'variables' as *;
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px $page-padding;
+  border-bottom: 1px solid $rule-strong;
+  font-family: $font-mono;
+  font-size: 13px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: $bg;
+}
+
+.wordmark {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+  color: $ink;
+
+  .prompt {
+    color: $green;
+  }
+
+  .path {
+    color: $accent;
+  }
+
+  .cursor {
+    width: 8px;
+    height: 14px;
+    background: $accent;
+    display: inline-block;
+    vertical-align: middle;
+    animation: blink 1.1s infinite;
+  }
+}
+
+.wordmark-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  color: $ink-soft;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      color: $accent-bright;
+    }
+  }
+}
+
+.hamburger {
+  width: 48px;
+  height: 48px;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  position: relative;
+
+  &::before,
+  &::after,
+  .hamburger-line {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 1.5px;
+    background: $ink;
+    border-radius: 1px;
+    transition: background 0.15s;
+  }
+
+  &::before {
+    margin-bottom: 6px;
+  }
+
+  &::after {
+    margin-top: 6px;
+  }
+
+  &:hover::before,
+  &:hover::after,
+  &:hover .hamburger-line {
+    background: $accent;
+  }
+}
+
+@media (max-width: $bp-tablet) {
+  .topbar {
+    padding: 10px $page-padding-mobile;
+  }
+
+  .topbar-right {
+    gap: 16px;
+
+    a {
+      display: none;
+    }
+  }
+}
+
+body.menu-open .topbar {
+  visibility: hidden;
+}
