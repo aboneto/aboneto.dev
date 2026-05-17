@@ -13,13 +13,23 @@
   <div class="overlay-body">
     <div class="overlay-nav">
       <div class="nav-label">// {{ site.categories | size }} directorios · ordenados por volumen</div>
+      {% assign category_pairs = "" | split: "" %}
       {% for cat in site.categories %}
-      <a href="/categoria/{{ cat[0] | slugify }}/" class="nav-item">
+        {% assign padded = cat[1].size | prepend: "0000" | slice: -5, 5 %}
+        {% assign pair = padded | append: "|" | append: cat[0] %}
+        {% assign category_pairs = category_pairs | push: pair %}
+      {% endfor %}
+      {% assign sorted_pairs = category_pairs | sort | reverse %}
+      {% for pair in sorted_pairs %}
+        {% assign parts = pair | split: "|" %}
+        {% assign cat_name = parts[1] %}
+        {% assign cat_posts = site.categories[cat_name] %}
+      <a href="/categoria/{{ cat_name | slugify }}/" class="nav-item">
         <span class="nav-num">{{ forloop.index | prepend: '00' | slice: -2, 2 }}.</span>
         <span>
-          <div class="nav-title">{{ cat[0] }}</div>
+          <div class="nav-title">{{ cat_name }}</div>
         </span>
-        <span class="nav-count">{{ cat[1].size }} posts</span>
+        <span class="nav-count">{{ cat_posts.size }} posts</span>
       </a>
       {% endfor %}
     </div>
