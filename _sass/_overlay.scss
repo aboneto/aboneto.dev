@@ -41,22 +41,18 @@
   display: flex;
   align-items: center;
 
+  &::before {
+    content: '[esc]';
+  }
+
   &:hover {
     color: $accent;
   }
-}
 
-.close-mobile {
-  display: none;
-}
-
-@media (max-width: $bp-tablet) {
-  .close-desktop {
-    display: none;
-  }
-
-  .close-mobile {
-    display: inline;
+  @media (max-width: $bp-tablet) {
+    &::before {
+      content: '[cerrar]';
+    }
   }
 }
 

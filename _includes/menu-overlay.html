@@ -5,7 +5,7 @@
       <span>cd</span>
       <span class="path">~/aboneto.dev</span>
     </div>
-    <button class="overlay-close" aria-label="Cerrar menú" title="Cerrar menú"><span class="close-desktop">[esc]</span><span class="close-mobile">[cerrar]</span></button>
+    <button class="overlay-close" aria-label="Cerrar menú" title="Cerrar menú"></button>
   </div>
   <div class="overlay-prompt">
     <span>$</span> <span class="cmd">ls -la categories/</span><span class="cursor"></span>
@@ -14,7 +14,7 @@
     <div class="overlay-nav">
       <div class="nav-label">// {{ site.categories | size }} directorios · ordenados por volumen</div>
       {% for cat in site.categories %}
-      <a href="/categoria/{{ cat[0] }}/" class="nav-item">
+      <a href="/categoria/{{ cat[0] | slugify }}/" class="nav-item">
         <span class="nav-num">{{ forloop.index | prepend: '00' | slice: -2, 2 }}.</span>
         <span>
           <div class="nav-title">{{ cat[0] }}</div>
