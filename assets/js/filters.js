@@ -1,13 +1,24 @@
 (function() {
   'use strict';
 
-  const chips = document.querySelectorAll('.chip[data-category]');
-  const archiveRows = document.querySelectorAll('.archive-row[data-categories]');
-  if (chips.length === 0 || archiveRows.length === 0) return;
+  const filterRow = document.getElementById('filter-row');
+  if (filterRow) {
+    const chips = Array.from(filterRow.querySelectorAll('.chip[data-count]'));
+    chips.sort((a, b) => {
+      const countA = parseInt(a.getAttribute('data-count') || '0', 10);
+      const countB = parseInt(b.getAttribute('data-count') || '0', 10);
+      return countB - countA;
+    });
+    chips.forEach(chip => filterRow.appendChild(chip));
+  }
 
-  chips.forEach(chip => {
+  const allChips = document.querySelectorAll('.chip[data-category]');
+  const archiveRows = document.querySelectorAll('.archive-row[data-categories]');
+  if (allChips.length === 0 || archiveRows.length === 0) return;
+
+  allChips.forEach(chip => {
     chip.addEventListener('click', () => {
-      chips.forEach(c => c.classList.remove('active'));
+      allChips.forEach(c => c.classList.remove('active'));
       chip.classList.add('active');
 
       const category = chip.getAttribute('data-category');

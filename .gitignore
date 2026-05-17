@@ -7,3 +7,4 @@ _site/
 vendor/
 node_modules/
 assets/images
+.DS_Store

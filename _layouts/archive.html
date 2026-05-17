@@ -8,7 +8,7 @@ layout: default
   <div class="archive-stats">
     <span><span class="k">total:</span>{{ site.posts.size }} posts</span>
     <span><span class="k">since:</span>{{ site.posts.last.date | date: '%Y-%m' }}</span>
-    <span><span class="k">categories:</span>{{ site.data.categories.size }}</span>
+    <span><span class="k">categories:</span>{{ site.categories.size }}</span>
   </div>
 </div>
 
@@ -21,11 +21,10 @@ layout: default
     <span class="kbd">⌘K</span>
   </div>
 
-  <div class="filter-row">
-    <span class="chip active" data-category="all">todos · {{ site.posts.size }}</span>
-    {% for cat in site.data.categories %}
-    {% assign cat_count = site.posts | where: "categories", cat.slug | size %}
-    <span class="chip" data-category="{{ cat.slug }}">#{{ cat.slug }} · {{ cat_count }}</span>
+  <div class="filter-row" id="filter-row">
+    <span class="chip active" data-category="all" role="button" tabindex="0">todos · {{ site.posts.size }}</span>
+    {% for cat in site.categories %}
+    <span class="chip" data-category="{{ cat[0] }}" data-count="{{ cat[1].size }}" role="button" tabindex="0">#{{ cat[0] }} · {{ cat[1].size }}</span>
     {% endfor %}
   </div>
 
@@ -34,7 +33,7 @@ layout: default
     <a href="{{ post.url | relative_url }}" class="archive-row" data-categories="{{ post.categories | join: ',' }}">
       <span class="date">{{ post.date | date: '%d %b %Y' }}</span>
       <h3>{{ post.title }}</h3>
-      <span class="rt">~{{ post.reading_time }}min</span>
+      <span class="rt">~{% include reading_time.html post=post %}min</span>
     </a>
     {% endfor %}
   </div>

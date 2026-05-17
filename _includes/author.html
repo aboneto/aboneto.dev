@@ -18,10 +18,10 @@
       <dt>location</dt>
       <dd>{{ author.location }}</dd>
       <dt>writes_about</dt>
-      <dd>arch · infra · ia · lead</dd>
+      <dd>{{ author.writes_about }}</dd>
       <dt>contact</dt>
       {% for link in author.links %}
-      <dd><a href="{{ link.href }}">→ {{ link.label | downcase }}</a></dd>
+      <dd><a href="{{ link.href }}" target="_blank">→ {{ link.label | downcase }}</a></dd>
       {% endfor %}
     </dl>
   </div>
