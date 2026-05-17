@@ -37,7 +37,7 @@
 }
 
 .reader-title {
-  font-size: 52px;
+  font-size: 48px;
   line-height: 1.08;
   letter-spacing: -0.025em;
   font-weight: 600;
@@ -62,13 +62,24 @@
   color: $ink;
   font-weight: 400;
 
+  hr {
+    border: 0;
+    height: 1px;
+    background-color: $rule;
+    margin: 2em 0;
+  }
+
+  a {
+    color: $accent;
+    text-decoration: underline;
+  }
+
   p {
     margin: 0 0 1.3em;
   }
 
   strong {
     font-weight: 600;
-    color: $ink;
   }
 
   h2 {
@@ -83,6 +94,49 @@
 
     &::before {
       content: '## ';
+      color: $ink-mute;
+    }
+  }
+
+  h3 {
+    font-size: 15px;
+    font-family: $font-mono;
+    letter-spacing: 0.04em;
+    font-weight: 500;
+    color: $accent;
+    margin: 2em 0 0.8em;
+
+    &::before {
+      content: '### ';
+      color: $ink-mute;
+    }
+  }
+
+  h4 {
+    font-size: 14px;
+    font-family: $font-mono;
+    letter-spacing: 0.03em;
+    font-weight: 500;
+    color: $accent-bright;
+    margin: 1.6em 0 0.6em;
+
+    &::before {
+      content: '#### ';
+      color: $ink-mute;
+    }
+  }
+
+  h5 {
+    font-size: 13px;
+    font-family: $font-mono;
+    letter-spacing: 0.02em;
+    font-weight: 500;
+    color: $ink-soft;
+    margin: 1.4em 0 0.5em;
+    text-transform: uppercase;
+
+    &::before {
+      content: '##### ';
       color: $ink-mute;
     }
   }
@@ -125,7 +179,9 @@
   .language-javascript,
   .language-typescript,
   .language-go,
-  .language-rust {
+  .language-rust,
+  .language-markdown,
+  .language-shell {
     position: relative;
   }
 
@@ -137,7 +193,9 @@
   .language-javascript::before,
   .language-typescript::before,
   .language-go::before,
-  .language-rust::before {
+  .language-rust::before,
+  .language-markdown::before,
+  .language-shell::before {
     position: absolute;
     top: 8px;
     right: 14px;
@@ -182,6 +240,14 @@
 
   .language-rust::before {
     content: 'rust';
+  }
+
+  .language-markdown::before {
+    content: 'markdown';
+  }
+
+  .language-shell::before {
+    content: 'shell';
   }
 
   .highlight {

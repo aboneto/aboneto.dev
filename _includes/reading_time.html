@@ -1,0 +1,4 @@
+{%- assign words = include.post.content | number_of_words -%}
+{%- assign reading_time = words | divided_by: 200 -%}
+{%- if reading_time < 1 -%}{%- assign reading_time = 1 -%}{%- endif -%}
+{{- reading_time -}}

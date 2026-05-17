@@ -15,7 +15,7 @@ The system SHALL have `_data/categories.yml` with entries for each category: slu
 - **THEN** all categories with slug, name are available
 
 ### Requirement: Post frontmatter schema
-Each post in `_posts/` SHALL include frontmatter with: `title`, `date`, `categories` (array), `tags` (array), `excerpt`, `reading_time` (integer minutes), `image` (path to WebP cover), and optionally `featured: true`.
+Each post in `_posts/` SHALL include frontmatter with: `title`, `date`, `categories` (array), `tags` (array), `excerpt`, `image` (path to WebP cover), and optionally `featured: true`. Reading time is auto-calculated from word count (~200 words/min).
 
 #### Scenario: Post with all frontmatter fields
 - **WHEN** a post file has all required frontmatter fields

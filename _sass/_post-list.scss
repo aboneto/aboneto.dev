@@ -3,6 +3,12 @@
 .post-image {
   position: relative;
   overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 .post-image-grid {
@@ -11,19 +17,7 @@
   background-image: linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
   background-size: 22px 22px;
   mix-blend-mode: overlay;
-}
-
-.post-image-label {
-  position: absolute;
-  bottom: 10px;
-  left: 12px;
-  font-family: $font-mono;
-  font-size: 10px;
-  color: rgba(255, 255, 255, 0.6);
-  letter-spacing: 0.04em;
-  background: rgba(0, 0, 0, 0.32);
-  padding: 3px 8px;
-  backdrop-filter: blur(4px);
+  pointer-events: none;
 }
 
 .latest {
@@ -116,10 +110,6 @@
 
     .post-image {
       height: 100% !important;
-    }
-
-    .post-image-label {
-      display: none;
     }
   }
 

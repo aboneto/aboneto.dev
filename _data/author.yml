@@ -1,9 +1,10 @@
 name: "Antonio Barbosa"
 role: "Software Engineer"
-bio: "Escribo sobre arquitectura de software, infraestructura, IA aplicada y cómo medir el impacto real de las decisiones técnicas. más de 18 años construyendo sistemas que importan."
+bio: "Ingeniero de Software con más de 19 años de experiencia liderando el diseño, desarrollo y escalamiento de sistemas en empresas como Buk, Walmart Chile, Cencosud y Globant. Mi trabajo cubre el ciclo completo: arquitectura backend, cloud, DevOps, frontend y, recientemente, integración de Large Language Models (LLMs) y funcionalidades agentic AI en producción."
 location: "Santiago, CL"
 initials: "AB"
 photo: "assets/img/antonio-barbosa.webp"
+writes_about: "software · architecture · infrastructure · ai · leadership"
 links:
   - label: "LinkedIn"
     href: "http://linkedin.com/in/aboneto"

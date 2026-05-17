@@ -4,7 +4,7 @@ layout: default
 
 {% assign featured = site.posts | where: "featured", true | first %}
 {% unless featured %}
-  {% assign featured = site.posts.first %}
+{% assign featured = site.posts.first %}
 {% endunless %}
 {% assign rest = site.posts | where_exp: "post", "post.url != featured.url" | slice: 0, 7 %}
 
@@ -23,33 +23,35 @@ layout: default
     </h1>
     <p class="hero-excerpt">{{ featured.excerpt | strip_html | strip_newlines }}</p>
     <div class="hero-meta">
-      <span><span class="k">read:</span> ~{{ featured.reading_time }}min</span>
+      <span><span class="k">read:</span> ~{% include reading_time.html post=featured %}min</span>
       <span><span class="k">wc:</span> {{ featured.content | number_of_words }}</span>
     </div>
   </div>
   <div class="hero-image-wrap">
-    {% include post-image.html slug=featured.slug %}
+    {% include post-image.html image=featured.image alt=featured.title %}
   </div>
 </a>
 {% endif %}
 
 <div class="latest">
   <div class="section-head">
-    <h2><span class="punct">//</span> <span class="accent">recent_posts</span> <span class="punct">— últimos publicados</span></h2>
-    <a class="more" href="/archivo">ls -la archivo →</a>
+    <h2><span class="punct">//</span> <span class="accent">recent_posts</span> <span class="punct">— últimos
+        publicados</span></h2>
+    <a class="more" href="/archivo" title="listado completo de artículos" aria-label="listado completo de artículos">ls
+      -la archivo →</a>
   </div>
   {% for post in rest %}
   <a href="{{ post.url | relative_url }}" class="post-row">
     <span class="num">[{{ forloop.index | prepend: '00' | slice: -2, 2 }}]</span>
     <span class="date">{{ post.date | date: '%d %b %Y' | replace: ' ', '·' }}</span>
     <div class="thumb">
-      {% include post-image.html slug=post.slug %}
+      {% include post-image.html image=post.image alt=post.title %}
     </div>
     <div>
       <h3>{{ post.title }}</h3>
       <p>{{ post.excerpt | strip_html | strip_newlines }}</p>
     </div>
-    <span class="rt">~{{ post.reading_time }}min</span>
+    <span class="rt">~{% include reading_time.html post=post %}min</span>
   </a>
   {% endfor %}
 </div>
