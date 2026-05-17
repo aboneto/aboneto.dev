@@ -33,6 +33,7 @@
   display: flex;
   align-items: baseline;
   justify-content: space-between;
+  gap: 32px;
   margin-bottom: 32px;
   font-family: $font-mono;
 
@@ -56,6 +57,8 @@
     color: $accent;
     font-size: 13px;
     text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
 
     &:hover {
       color: $accent-bright;
