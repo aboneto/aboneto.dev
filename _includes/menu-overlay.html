@@ -1,0 +1,37 @@
+<div id="menu-overlay" class="overlay" aria-hidden="true">
+  <div class="overlay-head">
+    <div class="wordmark">
+      <span class="prompt">$</span>
+      <span>cd</span>
+      <span class="path">~/aboneto.dev</span>
+    </div>
+    <button class="overlay-close" aria-label="Cerrar menú"><span class="close-desktop">[esc]</span><span class="close-mobile">[cerrar]</span></button>
+  </div>
+  <div class="overlay-prompt">
+    <span>$</span> <span class="cmd">ls -la categories/</span><span class="cursor"></span>
+  </div>
+  <div class="overlay-body">
+    <div class="overlay-nav">
+      <div class="nav-label">// {{ site.data.categories | size }} directorios · ordenados por volumen</div>
+      {% for cat in site.data.categories %}
+      {% assign cat_posts = site.posts | where: "categories", cat.slug %}
+      <a href="/categoria/{{ cat.slug }}/" class="nav-item">
+        <span class="nav-num">{{ forloop.index | prepend: '00' | slice: -2, 2 }}.</span>
+        <span>
+          <div class="nav-title">{{ cat.name }}</div>
+        </span>
+        <span class="nav-count">{{ cat_posts.size }} posts</span>
+      </a>
+      {% endfor %}
+    </div>
+    <div class="overlay-side">
+      <div class="side-label">// recent_posts · últimas 4</div>
+      {% for post in site.posts limit:4 %}
+      <a href="{{ post.url | relative_url }}" class="it">
+        <div class="t">{{ post.title }}</div>
+        <div class="m">{{ post.date | date: '%d %b %Y' }} · ~{{ post.reading_time }}min</div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</div>

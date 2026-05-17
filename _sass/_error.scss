@@ -1,0 +1,67 @@
+@use 'variables' as *;
+
+.error-page {
+  padding: 120px $page-padding;
+  display: flex;
+  justify-content: center;
+}
+
+.error-terminal {
+  max-width: 600px;
+  width: 100%;
+}
+
+.error-prompt {
+  font-family: $font-mono;
+  font-size: 14px;
+  color: $green;
+  margin-bottom: 24px;
+
+  .prompt {
+    color: $green;
+  }
+}
+
+.error-output {
+  margin-bottom: 32px;
+}
+
+.error-code {
+  font-family: $font-mono;
+  font-size: 14px;
+  color: $accent;
+  margin-bottom: 16px;
+}
+
+.error-message {
+  font-size: 18px;
+  color: $ink-soft;
+  line-height: 1.6;
+}
+
+.error-actions {
+  font-family: $font-mono;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .prompt {
+    color: $green;
+  }
+
+  a {
+    color: $accent;
+    text-decoration: none;
+
+    &:hover {
+      color: $accent-bright;
+    }
+  }
+}
+
+@media (max-width: $bp-tablet) {
+  .error-page {
+    padding: 60px $page-padding-mobile;
+  }
+}

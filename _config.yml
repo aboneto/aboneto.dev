@@ -1,0 +1,52 @@
+title: "aboneto.dev"
+description: "Escribo sobre arquitectura de software, infraestructura, IA aplicada y cómo medir el impacto real de las decisiones técnicas."
+url: "https://aboneto.dev"
+author: "A. Boneto"
+lang: es
+
+paginate: 12
+paginate_path: "artigos/:num/"
+permalink: /:title
+
+sass:
+  style: compressed
+
+kramdown:
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-paginate
+  - jekyll-archives
+  - jekyll-gzip
+  - jekyll-minifier
+
+jekyll-archives:
+  enabled:
+    - categories
+  layouts:
+    category: category
+  permalinks:
+    category: /categoria/:name/
+
+exclude:
+  - mockup/
+  - .agents/
+  - .claude/
+  - .opencode/
+  - .rtk/
+  - openspec/
+  - scripts/
+  - Gemfile
+  - Gemfile.lock
+  - AGENTS.md
+  - CLAUDE.md
+  - LICENSE
+  - opencode.json
+  - skills-lock.json
+  - assets/images

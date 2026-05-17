@@ -1,0 +1,230 @@
+@use 'variables' as *;
+
+.reader {
+  padding: 48px $page-padding 120px;
+}
+
+.reader-head {
+  max-width: 760px;
+  margin: 0 auto 36px;
+}
+
+.reader-figure {
+  max-width: 680px;
+  margin: 0 auto 40px;
+  display: flex;
+  flex-direction: column;
+
+  .post-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    border: 1px solid $rule-strong;
+  }
+
+  figcaption {
+    font-family: $font-mono;
+    font-size: 12px;
+    color: $ink-mute;
+    margin-top: 10px;
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+
+    .caption-accent {
+      color: $accent;
+    }
+  }
+}
+
+.reader-title {
+  font-size: 52px;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  font-weight: 600;
+  margin: 0 0 20px;
+  color: $ink;
+  text-wrap: balance;
+}
+
+.reader-deck {
+  font-size: 21px;
+  line-height: 1.5;
+  color: $ink-soft;
+  font-weight: 300;
+  margin: 0;
+}
+
+.reader-body {
+  max-width: 680px;
+  margin: 0 auto;
+  font-size: 18px;
+  line-height: 1.7;
+  color: $ink;
+  font-weight: 400;
+
+  p {
+    margin: 0 0 1.3em;
+  }
+
+  strong {
+    font-weight: 600;
+    color: $ink;
+  }
+
+  h2 {
+    font-size: 14px;
+    font-family: $font-mono;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    color: $green;
+    margin: 2.4em 0 1em;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $rule;
+
+    &::before {
+      content: '## ';
+      color: $ink-mute;
+    }
+  }
+
+  blockquote {
+    margin: 1.8em 0;
+    padding: 18px 22px;
+    font-family: $font-mono;
+    font-size: 15px;
+    line-height: 1.6;
+    color: $accent-bright;
+    background: rgba(122, 162, 255, 0.06);
+    border-left: 2px solid $accent;
+
+    &::before {
+      content: '> ';
+      color: $ink-mute;
+      font-weight: 500;
+    }
+  }
+
+  pre {
+    background: #050b1d;
+    border: 1px solid $rule-strong;
+    border-radius: 4px;
+    padding: 22px;
+    overflow-x: auto;
+    margin: 1.6em 0;
+    font-family: $font-mono;
+    font-size: 13.5px;
+    line-height: 1.7;
+    position: relative;
+  }
+
+  .language-python,
+  .language-bash,
+  .language-yaml,
+  .language-json,
+  .language-ruby,
+  .language-javascript,
+  .language-typescript,
+  .language-go,
+  .language-rust {
+    position: relative;
+  }
+
+  .language-python::before,
+  .language-bash::before,
+  .language-yaml::before,
+  .language-json::before,
+  .language-ruby::before,
+  .language-javascript::before,
+  .language-typescript::before,
+  .language-go::before,
+  .language-rust::before {
+    position: absolute;
+    top: 8px;
+    right: 14px;
+    font-size: 11px;
+    font-family: $font-mono;
+    color: $ink-soft;
+    letter-spacing: 0.06em;
+    z-index: 2;
+  }
+
+  .language-python::before {
+    content: 'python';
+  }
+
+  .language-bash::before {
+    content: 'sh';
+  }
+
+  .language-yaml::before {
+    content: 'yaml';
+  }
+
+  .language-json::before {
+    content: 'json';
+  }
+
+  .language-ruby::before {
+    content: 'ruby';
+  }
+
+  .language-javascript::before {
+    content: 'js';
+  }
+
+  .language-typescript::before {
+    content: 'ts';
+  }
+
+  .language-go::before {
+    content: 'go';
+  }
+
+  .language-rust::before {
+    content: 'rust';
+  }
+
+  .highlight {
+    position: static;
+  }
+
+  code {
+    color: $accent-bright;
+  }
+
+  ul {
+    margin: 0 0 1.4em;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    padding-left: 1.6em;
+    position: relative;
+    margin-bottom: 0.5em;
+    color: $ink-soft;
+
+    &::before {
+      content: '\2192';
+      position: absolute;
+      left: 0;
+      color: $accent;
+      font-family: $font-mono;
+      font-weight: 500;
+    }
+  }
+}
+
+@media (max-width: $bp-tablet) {
+  .reader {
+    padding: 32px $page-padding-mobile 80px;
+  }
+
+  .reader-title {
+    font-size: 32px;
+  }
+
+  .reader-body {
+    font-size: 16px;
+  }
+}

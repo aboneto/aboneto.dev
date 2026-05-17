@@ -1,0 +1,41 @@
+---
+layout: default
+---
+
+<div class="cat-head">
+  <div class="crumb">~<span class="slash">/</span>aboneto.dev<span class="slash">/</span><span class="accent">archivo</span></div>
+  <h1><span class="hash">$ </span>find . -type post</h1>
+  <div class="archive-stats">
+    <span><span class="k">total:</span>{{ site.posts.size }} posts</span>
+    <span><span class="k">since:</span>{{ site.posts.last.date | date: '%Y-%m' }}</span>
+    <span><span class="k">categories:</span>{{ site.data.categories.size }}</span>
+  </div>
+</div>
+
+<div class="archive-content">
+  <div class="search-bar">
+    <span class="prompt">/</span>
+    <div class="grep-input" id="grep-input">
+      <span class="grep-prefix">grep -i '</span><input id="archive-search" placeholder="arquitectura|observabilidad|…" /><span class="grep-suffix">'</span>
+    </div>
+    <span class="kbd">⌘K</span>
+  </div>
+
+  <div class="filter-row">
+    <span class="chip active" data-category="all">todos · {{ site.posts.size }}</span>
+    {% for cat in site.data.categories %}
+    {% assign cat_count = site.posts | where: "categories", cat.slug | size %}
+    <span class="chip" data-category="{{ cat.slug }}">#{{ cat.slug }} · {{ cat_count }}</span>
+    {% endfor %}
+  </div>
+
+  <div class="archive-list" id="archive-list">
+    {% for post in site.posts %}
+    <a href="{{ post.url | relative_url }}" class="archive-row" data-categories="{{ post.categories | join: ',' }}">
+      <span class="date">{{ post.date | date: '%d %b %Y' }}</span>
+      <h3>{{ post.title }}</h3>
+      <span class="rt">~{{ post.reading_time }}min</span>
+    </a>
+    {% endfor %}
+  </div>
+</div>

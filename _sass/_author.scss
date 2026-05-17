@@ -1,0 +1,141 @@
+@use 'variables' as *;
+
+.author {
+  padding: 80px $page-padding;
+  border-bottom: 1px solid $rule-strong;
+}
+
+.author-grid {
+  display: grid;
+  grid-template-columns: 180px 1fr 220px;
+  gap: 48px;
+  align-items: start;
+}
+
+.author-photo {
+  width: 180px;
+  height: 180px;
+  border: 1px solid $rule-strong;
+  background: linear-gradient(135deg, #1a2658 0%, #2c4ba0 50%, #4a7fff 100%);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px), linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 18px 18px;
+    z-index: 1;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: 2;
+  }
+
+  .initials {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $font-mono;
+    font-size: 64px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.95);
+    z-index: 2;
+  }
+}
+
+.author {
+  .tag {
+    font-family: $font-mono;
+    font-size: 11px;
+    color: $green;
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 0 0 6px;
+  }
+
+  .role {
+    font-family: $font-mono;
+    font-size: 13px;
+    color: $accent;
+    margin-bottom: 24px;
+  }
+
+  p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: $ink-soft;
+    font-weight: 300;
+    max-width: 56ch;
+    margin: 0;
+  }
+}
+
+.author-meta {
+  font-family: $font-mono;
+  font-size: 12px;
+  color: $ink-mute;
+  border-left: 1px solid $rule-strong;
+  padding-left: 24px;
+
+  dt {
+    color: $green;
+    margin-bottom: 6px;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+
+  dd {
+    color: $ink;
+    margin: 0 0 18px;
+    font-size: 13px;
+
+    a {
+      color: $accent;
+      text-decoration: none;
+
+      &:hover {
+        color: $accent-bright;
+      }
+    }
+  }
+}
+
+@media (max-width: $bp-tablet) {
+  .author {
+    padding: 48px $page-padding-mobile;
+  }
+
+  .author-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .author-photo {
+    width: 120px;
+    height: 120px;
+
+    .initials {
+      font-size: 40px;
+    }
+  }
+
+  .author-meta {
+    border-left: 0;
+    padding-left: 0;
+    border-top: 1px solid $rule-strong;
+    padding-top: 24px;
+  }
+}

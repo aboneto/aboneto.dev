@@ -1,0 +1,27 @@
+---
+layout: default
+title: "404 — no encontrado"
+permalink: /404.html
+---
+
+<div class="error-page">
+  <div class="error-terminal">
+    <div class="error-prompt">
+      <span class="prompt">$</span> <span>cd <span id="error-path">/ruta/desconocida</span></span>
+    </div>
+    <div class="error-output">
+      <p class="error-code">bash: cd: <span id="error-path-2">/ruta/desconocida</span>: No such file or directory</p>
+      <p class="error-message">Error 404 — la página que buscas no existe en este sistema.</p>
+    </div>
+    <div class="error-actions">
+      <span class="prompt">$</span> <a href="/">cd ~</a>
+      <span class="prompt">$</span> <a href="/archivo">ls archivo/</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const path = window.location.pathname;
+  document.getElementById('error-path').textContent = path;
+  document.getElementById('error-path-2').textContent = path;
+</script>

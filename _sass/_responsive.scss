@@ -1,0 +1,25 @@
+@use 'variables' as *;
+
+// Responsive rules live in their respective partials.
+// This file only handles breakpoints not covered elsewhere.
+
+@media (min-width: $bp-wide) {
+  .hero {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .latest {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .reader-body {
+    max-width: 760px;
+  }
+
+  .cat-head {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+}

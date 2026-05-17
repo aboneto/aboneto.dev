@@ -1,0 +1,79 @@
+@use 'variables' as *;
+
+// Rouge syntax highlighting
+.highlight {
+  .c, .c1, .ch, .cm, .cpf, .cs, .cp {
+    color: $ink-mute;
+    font-style: italic;
+  }
+
+  .k, .kd, .kn, .kp, .kr, .kt {
+    color: #c792ea;
+  }
+
+  .s, .s1, .s2, .sb, .sc, .dl, .sd, .se, .sh, .si, .sx, .sr, .ss {
+    color: $green;
+  }
+
+  .na {
+    color: $accent;
+  }
+
+  .nb {
+    color: #ffcb6b;
+  }
+
+  .nf, .fm {
+    color: #ffcb6b;
+  }
+
+  .nc, .nn {
+    color: #c792ea;
+  }
+
+  .no, .ni, .ne {
+    color: $accent;
+  }
+
+  .nt {
+    color: #f07178;
+  }
+
+  .nv, .vi, .vc, .vg {
+    color: $accent;
+  }
+
+  .o, .ow {
+    color: $ink-mute;
+  }
+
+  .p {
+    color: $ink-soft;
+  }
+
+  .mi, .mf, .mh, .mo, .m, .il {
+    color: #f78c6c;
+  }
+
+  .gd {
+    color: #f07178;
+  }
+
+  .gi {
+    color: $green;
+  }
+
+  .gh, .gu {
+    color: $accent;
+    font-weight: 500;
+  }
+
+  .w {
+    color: $ink;
+  }
+
+  .err {
+    color: #f07178;
+    background: transparent;
+  }
+}
