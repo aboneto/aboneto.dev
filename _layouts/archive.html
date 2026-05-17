@@ -21,10 +21,10 @@ layout: default
     <span class="kbd">⌘K</span>
   </div>
 
-  <div class="filter-row">
+  <div class="filter-row" id="filter-row">
     <span class="chip active" data-category="all" role="button" tabindex="0">todos · {{ site.posts.size }}</span>
     {% for cat in site.categories %}
-    <span class="chip" data-category="{{ cat[0] }}" role="button" tabindex="0">#{{ cat[0] }} · {{ cat[1].size }}</span>
+    <span class="chip" data-category="{{ cat[0] }}" data-count="{{ cat[1].size }}" role="button" tabindex="0">#{{ cat[0] }} · {{ cat[1].size }}</span>
     {% endfor %}
   </div>
 
