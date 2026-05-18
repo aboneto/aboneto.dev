@@ -8,7 +8,7 @@
   }
 
   .k, .kd, .kn, .kp, .kr, .kt {
-    color: #c792ea;
+    color: $syntax-keyword;
   }
 
   .s, .s1, .s2, .sb, .sc, .dl, .sd, .se, .sh, .si, .sx, .sr, .ss {
@@ -20,15 +20,15 @@
   }
 
   .nb {
-    color: #ffcb6b;
+    color: $syntax-builtin;
   }
 
   .nf, .fm {
-    color: #ffcb6b;
+    color: $syntax-builtin;
   }
 
   .nc, .nn {
-    color: #c792ea;
+    color: $syntax-keyword;
   }
 
   .no, .ni, .ne {
@@ -36,7 +36,7 @@
   }
 
   .nt {
-    color: #f07178;
+    color: $syntax-tag;
   }
 
   .nv, .vi, .vc, .vg {
@@ -52,11 +52,11 @@
   }
 
   .mi, .mf, .mh, .mo, .m, .il {
-    color: #f78c6c;
+    color: $syntax-number;
   }
 
   .gd {
-    color: #f07178;
+    color: $syntax-tag;
   }
 
   .gi {
@@ -73,7 +73,7 @@
   }
 
   .err {
-    color: #f07178;
+    color: $syntax-tag;
     background: transparent;
   }
 }

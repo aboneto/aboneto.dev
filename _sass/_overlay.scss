@@ -1,4 +1,5 @@
 @use 'variables' as *;
+@use 'animations';
 
 .overlay {
   position: fixed;
@@ -74,10 +75,6 @@
     animation: blink 1.1s infinite;
     margin-left: 4px;
   }
-}
-
-@keyframes blink {
-  50% { opacity: 0; }
 }
 
 .overlay-body {

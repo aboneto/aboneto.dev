@@ -16,21 +16,34 @@
   const archiveRows = document.querySelectorAll('.archive-row[data-categories]');
   if (allChips.length === 0 || archiveRows.length === 0) return;
 
+  function activateChip(chip) {
+    allChips.forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+
+    const category = chip.getAttribute('data-category');
+
+    archiveRows.forEach(row => {
+      if (category === 'all') {
+        row.style.display = '';
+      } else {
+        const cats = row.getAttribute('data-categories') || '';
+        row.style.display = cats.indexOf(category) !== -1 ? '' : 'none';
+      }
+    });
+  }
+
   allChips.forEach(chip => {
     chip.addEventListener('click', () => {
-      allChips.forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
+      activateChip(chip);
+    });
 
-      const category = chip.getAttribute('data-category');
-
-      archiveRows.forEach(row => {
-        if (category === 'all') {
-          row.style.display = '';
-        } else {
-          const cats = row.getAttribute('data-categories') || '';
-          row.style.display = cats.indexOf(category) !== -1 ? '' : 'none';
-        }
-      });
+    chip.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        activateChip(chip);
+      } else if (e.key === ' ') {
+        e.preventDefault();
+        activateChip(chip);
+      }
     });
   });
 })();

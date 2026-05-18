@@ -1,4 +1,5 @@
 @use 'variables' as *;
+@use 'animations';
 
 .topbar {
   display: flex;
@@ -12,6 +13,7 @@
   top: 0;
   z-index: 50;
   background: $bg;
+  transition: opacity 0.2s;
 }
 
 .wordmark {
@@ -45,10 +47,6 @@
   gap: 12px;
   text-decoration: none;
   color: inherit;
-}
-
-@keyframes blink {
-  50% { opacity: 0; }
 }
 
 .topbar-right {
@@ -121,6 +119,25 @@
   }
 }
 
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  z-index: 100;
+  padding: 8px 16px;
+  background: $bg;
+  color: $accent;
+  font-family: $font-mono;
+  font-size: 14px;
+  text-decoration: none;
+  border: 1px solid $accent;
+
+  &:focus {
+    top: 0;
+  }
+}
+
 body.menu-open .topbar {
-  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
 }

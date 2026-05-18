@@ -26,11 +26,15 @@ The system SHALL generate `sitemap.xml` via `jekyll-sitemap` with all published 
 - **THEN** a valid XML sitemap is returned with all pages and posts
 
 ### Requirement: Robots.txt
-The system SHALL have a `robots.txt` that allows all crawlers and references the sitemap.
+The system SHALL have a `robots.txt` generated as a Jekyll template that uses `{{ site.url }}` for the sitemap reference, allowing all crawlers and referencing the sitemap dynamically.
 
 #### Scenario: Robots allows crawling
 - **WHEN** requesting `/robots.txt`
-- **THEN** it contains `User-agent: *`, `Allow: /`, and `Sitemap:` directive
+- **THEN** it contains `User-agent: *`, `Allow: /`, and `Sitemap: {{ site.url }}/sitemap.xml`
+
+#### Scenario: Robots uses site URL from config
+- **WHEN** the `url` value in `_config.yml` changes
+- **THEN** the `robots.txt` sitemap reference updates automatically on next build
 
 ### Requirement: HTML minification
 The system SHALL minify all HTML output via `jekyll-minifier` to reduce file sizes.
