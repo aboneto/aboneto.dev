@@ -105,29 +105,39 @@
   border: none;
   position: relative;
 
-  &::before,
-  &::after,
   .hamburger-line {
-    content: '';
     display: block;
     width: 20px;
-    height: 1.5px;
+    height: 2px;
     background: $ink;
     border-radius: 1px;
     transition: background 0.15s;
+    position: relative;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 20px;
+      height: 2px;
+      background: $ink;
+      border-radius: 1px;
+      transition: background 0.15s;
+    }
+
+    &::before {
+      top: -7px;
+    }
+
+    &::after {
+      top: 7px;
+    }
   }
 
-  &::before {
-    margin-bottom: 6px;
-  }
-
-  &::after {
-    margin-top: 6px;
-  }
-
-  &:hover::before,
-  &:hover::after,
-  &:hover .hamburger-line {
+  &:hover .hamburger-line,
+  &:hover .hamburger-line::before,
+  &:hover .hamburger-line::after {
     background: $accent;
   }
 }
