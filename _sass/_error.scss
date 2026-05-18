@@ -1,9 +1,13 @@
 @use 'variables' as *;
 
 .error-page {
-  padding: 120px $page-padding;
+  padding: 60px $page-padding-mobile;
   display: flex;
   justify-content: center;
+
+  @media (min-width: $bp-tablet) {
+    padding: 120px $page-padding-desktop;
+  }
 }
 
 .error-terminal {
@@ -53,15 +57,12 @@
   a {
     color: $accent;
     text-decoration: none;
+    min-height: $touch-target;
+    display: inline-flex;
+    align-items: center;
 
     &:hover {
       color: $accent-bright;
     }
-  }
-}
-
-@media (max-width: $bp-tablet) {
-  .error-page {
-    padding: 60px $page-padding-mobile;
   }
 }

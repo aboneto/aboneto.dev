@@ -4,8 +4,8 @@
 .topbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 14px $page-padding;
+  justify-content: center;
+  padding: 10px $page-padding-mobile;
   border-bottom: 1px solid $rule-strong;
   font-family: $font-mono;
   font-size: 13px;
@@ -14,6 +14,21 @@
   z-index: 50;
   background: $bg;
   transition: opacity 0.2s;
+
+  @media (min-width: $bp-tablet) {
+    padding: 14px $page-padding-desktop;
+  }
+}
+
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  @media (min-width: $bp-wide) {
+    max-width: 1400px;
+  }
 }
 
 .wordmark {
@@ -52,22 +67,34 @@
 .topbar-right {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 16px;
   color: $ink-soft;
 
   a {
+    display: none;
     color: inherit;
     text-decoration: none;
+    padding: 4px 0;
+    line-height: 1;
 
     &:hover {
       color: $accent-bright;
     }
   }
+
+  @media (min-width: $bp-tablet) {
+    gap: 28px;
+
+    a {
+      display: inline-flex;
+      align-items: center;
+    }
+  }
 }
 
 .hamburger {
-  width: 48px;
-  height: 48px;
+  width: $touch-target;
+  height: $touch-target;
   background: transparent;
   cursor: pointer;
   display: flex;
@@ -105,20 +132,6 @@
   }
 }
 
-@media (max-width: $bp-tablet) {
-  .topbar {
-    padding: 10px $page-padding-mobile;
-  }
-
-  .topbar-right {
-    gap: 16px;
-
-    a {
-      display: none;
-    }
-  }
-}
-
 .skip-link {
   position: absolute;
   top: -100%;
@@ -140,4 +153,5 @@
 body.menu-open .topbar {
   opacity: 0;
   pointer-events: none;
+  transition: opacity 0.3s ease;
 }

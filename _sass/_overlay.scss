@@ -6,28 +6,48 @@
   inset: 0;
   background: rgba(8, 15, 36, 0.97);
   backdrop-filter: blur(6px);
-  padding: 14px $page-padding 40px;
+  padding: 10px $page-padding-mobile 24px;
   display: flex;
   flex-direction: column;
   font-family: $font-mono;
   z-index: 100;
   opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.2s, visibility 0.2s;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 
-  &[aria-hidden="false"] {
-    opacity: 1;
-    visibility: visible;
+  @media (min-width: $bp-tablet) {
+    padding: 14px $page-padding-desktop 40px;
   }
+}
+
+.overlay[aria-hidden="false"] {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .overlay-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 14px;
+  padding-bottom: 10px;
   border-bottom: 1px solid $rule-strong;
   font-size: 13px;
+
+  @media (min-width: $bp-tablet) {
+    padding-bottom: 14px;
+  }
+}
+
+.overlay-head-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  @media (min-width: $bp-wide) {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
 }
 
 .overlay-close {
@@ -43,16 +63,16 @@
   align-items: center;
 
   &::before {
-    content: '[esc]';
+    content: '[cerrar]';
   }
 
   &:hover {
     color: $accent;
   }
 
-  @media (max-width: $bp-tablet) {
+  @media (min-width: $bp-tablet) {
     &::before {
-      content: '[cerrar]';
+      content: '[esc]';
     }
   }
 }
@@ -77,13 +97,31 @@
   }
 }
 
+.overlay-prompt-inner {
+  @media (min-width: $bp-wide) {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+}
+
 .overlay-body {
   flex: 1;
   display: grid;
-  grid-template-columns: 1.6fr 1fr;
-  gap: 80px;
+  grid-template-columns: 1fr;
+  gap: 32px;
   padding-top: 32px;
   overflow-y: auto;
+
+  @media (min-width: $bp-tablet) {
+    grid-template-columns: 1.6fr 1fr;
+    gap: 80px;
+  }
+
+  @media (min-width: $bp-wide) {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+  }
 }
 
 .overlay-nav {
@@ -129,10 +167,14 @@
 
   .nav-title {
     font-family: $font-sans;
-    font-size: 28px;
+    font-size: 20px;
     font-weight: 500;
     letter-spacing: -0.015em;
     color: $ink;
+
+    @media (min-width: $bp-tablet) {
+      font-size: 28px;
+    }
   }
 
   .nav-count {
@@ -177,24 +219,5 @@
       color: $ink-mute;
       letter-spacing: 0.02em;
     }
-  }
-}
-
-@media (max-width: $bp-tablet) {
-  .overlay {
-    padding: 10px $page-padding-mobile 24px;
-  }
-
-  .overlay-head {
-    padding-bottom: 10px;
-  }
-
-  .overlay-body {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-
-  .overlay-nav .nav-title {
-    font-size: 20px;
   }
 }

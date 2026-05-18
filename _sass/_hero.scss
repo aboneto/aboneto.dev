@@ -2,9 +2,9 @@
 
 .hero {
   display: grid;
-  grid-template-columns: 1.05fr 1fr;
-  gap: 56px;
-  padding: 64px $page-padding 72px;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  padding: 40px $page-padding-mobile 48px;
   border-bottom: 1px solid $rule-strong;
   align-items: center;
   text-decoration: none;
@@ -14,6 +14,17 @@
 
   &:hover {
     background: rgba(122, 162, 255, 0.04);
+  }
+
+  @media (min-width: $bp-tablet) {
+    grid-template-columns: 1.05fr 1fr;
+    gap: 40px;
+    padding: 48px $page-padding-desktop 56px;
+  }
+
+  @media (min-width: $bp-desktop) {
+    gap: 56px;
+    padding: 64px $page-padding-desktop 72px;
   }
 }
 
@@ -26,9 +37,14 @@
   position: relative;
   aspect-ratio: 16 / 11;
   overflow: hidden;
+  order: -1;
 
   .post-image {
     height: 100% !important;
+  }
+
+  @media (min-width: $bp-tablet) {
+    order: unset;
   }
 }
 
@@ -52,7 +68,7 @@
 
 .hero-title {
   font-family: $font-sans;
-  font-size: 64px;
+  font-size: 36px;
   line-height: 1.05;
   letter-spacing: -0.025em;
   font-weight: 600;
@@ -66,15 +82,27 @@
     font-family: $font-mono;
     font-weight: 500;
   }
+
+  @media (min-width: $bp-tablet) {
+    font-size: 48px;
+  }
+
+  @media (min-width: $bp-desktop) {
+    font-size: 64px;
+  }
 }
 
 .hero-excerpt {
-  font-size: 20px;
+  font-size: 16px;
   line-height: 1.55;
   color: $ink-soft;
   font-weight: 300;
   max-width: 62ch;
   margin: 0 0 32px;
+
+  @media (min-width: $bp-tablet) {
+    font-size: 20px;
+  }
 }
 
 .hero-meta {
@@ -87,36 +115,5 @@
 
   .k {
     color: $green;
-  }
-}
-
-@media (max-width: $bp-tablet) {
-  .hero {
-    grid-template-columns: 1fr;
-    gap: 32px;
-    padding: 40px $page-padding-mobile 48px;
-  }
-
-  .hero-image-wrap {
-    order: -1;
-  }
-
-  .hero-title {
-    font-size: 36px;
-  }
-
-  .hero-excerpt {
-    font-size: 16px;
-  }
-}
-
-@media (min-width: $bp-tablet) and (max-width: $bp-desktop) {
-  .hero {
-    gap: 40px;
-    padding: 48px $page-padding 56px;
-  }
-
-  .hero-title {
-    font-size: 48px;
   }
 }

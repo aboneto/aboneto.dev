@@ -1,7 +1,7 @@
 @use 'variables' as *;
 
 .cat-head {
-  padding: 72px $page-padding 56px;
+  padding: 40px $page-padding-mobile 32px;
   border-bottom: 1px solid $rule-strong;
 
   .crumb {
@@ -21,7 +21,7 @@
   }
 
   h1 {
-    font-size: 56px;
+    font-size: 32px;
     line-height: 1.05;
     letter-spacing: -0.025em;
     font-weight: 600;
@@ -36,7 +36,8 @@
 
   .stats {
     display: flex;
-    gap: 32px;
+    flex-wrap: wrap;
+    gap: 16px;
     font-family: $font-mono;
     font-size: 12px;
     color: $ink-mute;
@@ -56,19 +57,17 @@
     max-width: 64ch;
     margin: 20px 0 0;
   }
-}
 
-@media (max-width: $bp-tablet) {
-  .cat-head {
-    padding: 40px $page-padding-mobile 32px;
+  @media (min-width: $bp-tablet) {
+    padding: 72px $page-padding-desktop 56px;
 
     h1 {
-      font-size: 32px;
+      font-size: 56px;
     }
 
     .stats {
-      flex-wrap: wrap;
-      gap: 16px;
+      flex-wrap: nowrap;
+      gap: 32px;
     }
   }
 }

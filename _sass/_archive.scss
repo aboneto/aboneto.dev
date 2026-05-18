@@ -65,11 +65,26 @@
   gap: 0;
   margin-bottom: 32px;
   font-family: $font-mono;
+
+  @media (max-width: $bp-desktop) {
+    .chip:nth-child(n+7) {
+      display: none;
+    }
+  }
+
+  @media (min-width: $bp-desktop) {
+    .chip:nth-child(n+24) {
+      display: none;
+    }
+  }
 }
 
 .chip {
   font-size: 12px;
   padding: 8px 14px;
+  min-height: $touch-target;
+  display: inline-flex;
+  align-items: center;
   cursor: pointer;
   color: $ink-soft;
   border-right: 1px solid $rule;
@@ -96,9 +111,9 @@
 
 .archive-row {
   display: grid;
-  grid-template-columns: 130px 1fr 80px;
-  gap: 28px;
-  padding: 18px 8px;
+  grid-template-columns: 1fr;
+  gap: 4px;
+  padding: 14px 0;
   border-bottom: 1px solid $rule;
   align-items: center;
   cursor: pointer;
@@ -129,12 +144,21 @@
     font-family: $font-mono;
     font-size: 12px;
     color: $ink-mute;
-    text-align: right;
+    text-align: left;
   }
 }
 
 .archive-content {
-  padding: 40px $page-padding 80px;
+  padding: 24px $page-padding-mobile 48px;
+
+  @media (min-width: $bp-tablet) {
+    padding: 40px $page-padding-desktop 80px;
+  }
+
+  @media (min-width: $bp-wide) {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
 }
 
 .archive-stats {
@@ -150,24 +174,14 @@
   }
 }
 
-@media (max-width: $bp-tablet) {
-  .archive-content {
-    padding: 24px $page-padding-mobile 48px;
-  }
-
-  .filter-row {
-    .chip:nth-child(n+7) {
-      display: none;
-    }
-  }
-
+@media (min-width: $bp-tablet) {
   .archive-row {
-    grid-template-columns: 1fr;
-    gap: 4px;
-    padding: 14px 0;
+    grid-template-columns: 130px 1fr 80px;
+    gap: 28px;
+    padding: 18px 8px;
 
     .rt {
-      text-align: left;
+      text-align: right;
     }
   }
 }

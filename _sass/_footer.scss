@@ -1,18 +1,40 @@
 @use 'variables' as *;
 
 .foot {
-  padding: 32px $page-padding;
+  padding: 24px $page-padding-mobile;
   font-family: $font-mono;
   font-size: 12px;
   color: $ink-mute;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   letter-spacing: 0.02em;
   border-top: 1px solid $rule-strong;
 
   .prompt {
     color: $green;
+  }
+
+  @media (min-width: $bp-tablet) {
+    padding: 32px $page-padding-desktop;
+  }
+}
+
+.foot-inner {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+
+  @media (min-width: $bp-tablet) {
+    flex-direction: row;
+    gap: 0;
+    text-align: left;
+  }
+
+  @media (min-width: $bp-wide) {
+    max-width: 1400px;
+    margin: 0 auto;
   }
 }
 
@@ -27,14 +49,5 @@
     &:hover {
       color: $accent;
     }
-  }
-}
-
-@media (max-width: $bp-tablet) {
-  .foot {
-    flex-direction: column-reverse;
-    gap: 16px;
-    padding: 24px $page-padding-mobile;
-    text-align: center;
   }
 }
