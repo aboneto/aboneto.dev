@@ -3,7 +3,7 @@ role: "Software Engineer"
 bio: "Ingeniero de Software con más de 19 años de experiencia liderando el diseño, desarrollo y escalamiento de sistemas en empresas como Buk, Walmart Chile, Cencosud y Globant. Mi trabajo cubre el ciclo completo: arquitectura backend, cloud, DevOps, frontend y, recientemente, integración de Large Language Models (LLMs) y funcionalidades agentic AI en producción."
 location: "Santiago, CL"
 initials: "AB"
-photo: "assets/img/antonio-barbosa.webp"
+photo: "/assets/img/antonio-barbosa.webp"
 writes_about: "software · architecture · infrastructure · ai · leadership"
 links:
   - label: "LinkedIn"

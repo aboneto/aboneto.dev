@@ -1,11 +1,11 @@
 title: "aboneto.dev"
-description: "Escribo sobre arquitectura de software, infraestructura, IA aplicada y cómo medir el impacto real de las decisiones técnicas."
+description: "Escribo sobre IA aplicada, infraestructura y arquitectura. Cosas que pruebo, mido y uso en el día a día."
 url: "https://aboneto.dev"
 author: "Antonio Barbosa"
 lang: es
 
 paginate: 12
-paginate_path: "artigos/:num/"
+paginate_path: "articulos/:num/"
 permalink: /:title
 
 sass:
@@ -16,6 +16,12 @@ kramdown:
   syntax_highlighter_opts:
     block:
       line_numbers: false
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /assets/img/aboneto.dev.webp
 
 plugins:
   - jekyll-feed

@@ -1,4 +1,6 @@
+---
+---
 User-agent: *
 Allow: /
 
-Sitemap: https://aboneto.dev/sitemap.xml
+Sitemap: {{ site.url }}/sitemap.xml
