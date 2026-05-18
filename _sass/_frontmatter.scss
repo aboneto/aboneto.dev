@@ -2,14 +2,15 @@
 
 .reader-frontmatter {
   font-family: $font-mono;
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1.8;
   color: $ink-soft;
-  padding: 18px 22px;
+  padding: 14px 16px;
   border: 1px solid $rule-strong;
   border-radius: 4px;
   background: rgba(255, 255, 255, 0.015);
-  margin-bottom: 36px;
+  margin-bottom: 24px;
+  overflow-x: auto;
 
   .k {
     color: $ink-mute;
@@ -26,5 +27,11 @@
   .dashes {
     color: $ink-mute;
     user-select: none;
+  }
+
+  @media (min-width: $bp-tablet) {
+    font-size: 13px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
   }
 }

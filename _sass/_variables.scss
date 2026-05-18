@@ -14,9 +14,14 @@ $rule-strong: unquote("rgba(255, 255, 255, 0.14)");
 $font-sans: 'IBM Plex Sans', system-ui, sans-serif;
 $font-mono: 'IBM Plex Mono', monospace;
 
-// Spacing
-$page-padding: 56px;
-$page-padding-mobile: 20px;
+// Spacing (mobile-first)
+$page-padding: 1rem;
+$page-padding-mobile: 1rem;
+$page-padding-tablet: 2rem;
+$page-padding-desktop: 3rem;
+
+// Touch targets
+$touch-target: 48px;
 
 // Breakpoints
 $bp-mobile: 320px;

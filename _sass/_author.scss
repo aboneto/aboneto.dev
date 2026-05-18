@@ -1,20 +1,30 @@
 @use 'variables' as *;
 
 .author {
-  padding: 80px $page-padding;
+  padding: 48px $page-padding-mobile;
   border-bottom: 1px solid $rule-strong;
 }
 
 .author-grid {
   display: grid;
-  grid-template-columns: 180px 1fr 220px;
-  gap: 48px;
+  grid-template-columns: 1fr;
+  gap: 24px;
   align-items: start;
+
+  @media (min-width: $bp-tablet) {
+    grid-template-columns: 180px 1fr 220px;
+    gap: 48px;
+  }
+
+  @media (min-width: $bp-wide) {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
 }
 
 .author-photo {
-  width: 180px;
-  height: 180px;
+  width: 120px;
+  height: 120px;
   border: 1px solid $rule-strong;
   background: linear-gradient(135deg, #1a2658 0%, #2c4ba0 50%, #4a7fff 100%);
   position: relative;
@@ -44,7 +54,7 @@
     align-items: center;
     justify-content: center;
     font-family: $font-mono;
-    font-size: 64px;
+    font-size: 40px;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.95);
     z-index: 2;
@@ -86,8 +96,10 @@
   font-family: $font-mono;
   font-size: 12px;
   color: $ink-mute;
-  border-left: 1px solid $rule-strong;
-  padding-left: 24px;
+  border-left: 0;
+  padding-left: 0;
+  border-top: 1px solid $rule-strong;
+  padding-top: 24px;
 
   dt {
     color: $green;
@@ -112,29 +124,24 @@
   }
 }
 
-@media (max-width: $bp-tablet) {
+@media (min-width: $bp-tablet) {
   .author {
-    padding: 48px $page-padding-mobile;
-  }
-
-  .author-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
+    padding: 80px $page-padding-desktop;
   }
 
   .author-photo {
-    width: 120px;
-    height: 120px;
+    width: 180px;
+    height: 180px;
 
     .initials {
-      font-size: 40px;
+      font-size: 64px;
     }
   }
 
   .author-meta {
-    border-left: 0;
-    padding-left: 0;
-    border-top: 1px solid $rule-strong;
-    padding-top: 24px;
+    border-top: 0;
+    padding-top: 0;
+    border-left: 1px solid $rule-strong;
+    padding-left: 24px;
   }
 }

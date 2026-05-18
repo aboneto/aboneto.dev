@@ -1,16 +1,14 @@
 @use 'variables' as *;
 
 .reader {
-  padding: 48px $page-padding 120px;
+  padding: 32px $page-padding-mobile 80px;
 }
 
 .reader-head {
-  max-width: 760px;
   margin: 0 auto 36px;
 }
 
 .reader-figure {
-  max-width: 680px;
   margin: 0 auto 40px;
   display: flex;
   flex-direction: column;
@@ -37,7 +35,7 @@
 }
 
 .reader-title {
-  font-size: 48px;
+  font-size: 32px;
   line-height: 1.08;
   letter-spacing: -0.025em;
   font-weight: 600;
@@ -55,9 +53,7 @@
 }
 
 .reader-body {
-  max-width: 680px;
-  margin: 0 auto;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.7;
   color: $ink;
   font-weight: 400;
@@ -281,16 +277,32 @@
   }
 }
 
-@media (max-width: $bp-tablet) {
+@media (min-width: $bp-tablet) {
   .reader {
-    padding: 32px $page-padding-mobile 80px;
+    padding: 48px $page-padding-desktop 120px;
   }
 
   .reader-title {
-    font-size: 32px;
+    font-size: 48px;
   }
 
   .reader-body {
-    font-size: 16px;
+    font-size: 18px;
+  }
+}
+
+@media (min-width: $bp-desktop) {
+  .reader-head {
+    max-width: 760px;
+    margin: 0 auto 36px;
+  }
+
+  .reader-figure {
+    max-width: 680px;
+  }
+
+  .reader-body {
+    max-width: 680px;
+    margin: 0 auto;
   }
 }

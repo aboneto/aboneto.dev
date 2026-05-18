@@ -1,14 +1,18 @@
 <div id="menu-overlay" class="overlay" aria-hidden="true" aria-modal="true">
   <div class="overlay-head">
-    <div class="wordmark">
-      <span class="prompt">$</span>
-      <span>cd</span>
-      <span class="path">~/aboneto.dev</span>
+    <div class="overlay-head-inner">
+      <div class="wordmark">
+        <span class="prompt">$</span>
+        <span>cd</span>
+        <span class="path">~/aboneto.dev</span>
+      </div>
+      <button class="overlay-close" aria-label="Cerrar menú" title="Cerrar menú"></button>
     </div>
-    <button class="overlay-close" aria-label="Cerrar menú" title="Cerrar menú"></button>
   </div>
   <div class="overlay-prompt">
-    <span>$</span> <span class="cmd">ls -la categories/</span><span class="cursor"></span>
+    <div class="overlay-prompt-inner">
+      <span>$</span> <span class="cmd">ls -la categories/</span><span class="cursor"></span>
+    </div>
   </div>
   <div class="overlay-body">
     <div class="overlay-nav">
