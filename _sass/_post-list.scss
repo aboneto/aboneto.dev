@@ -167,43 +167,50 @@
     align-items: center;
 
     .num {
-      grid-column: auto;
-      grid-row: auto;
+      grid-column: 1;
+      grid-row: 1;
       opacity: 1;
     }
 
-    .thumb {
-      grid-column: auto;
-      grid-row: auto;
-      width: 160px;
-      height: 100px;
+    .date {
+      grid-column: 2;
+      grid-row: 1;
     }
 
-    .date {
-      grid-column: auto;
-      grid-row: auto;
+    .thumb {
+      grid-column: 3;
+      grid-row: 1;
+      width: 120px;
+      height: 80px;
     }
 
     h3 {
-      grid-column: auto;
-      grid-row: auto;
+      grid-column: 4;
+      grid-row: 1;
       font-size: 22px;
       font-weight: 500;
     }
 
     p {
       display: block;
+      grid-column: 4;
+      grid-row: 2;
     }
 
     .rt {
-      grid-column: auto;
-      grid-row: auto;
-      align-self: auto;
+      grid-column: 5;
+      grid-row: 1;
+      align-self: center;
     }
   }
 
   @media (min-width: $bp-desktop) {
     grid-template-columns: 60px 110px 160px 1fr 90px;
     gap: 28px;
+
+    .thumb {
+      width: 160px;
+      height: 100px;
+    }
   }
 }

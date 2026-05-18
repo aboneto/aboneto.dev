@@ -1,7 +1,7 @@
 @use 'variables' as *;
 
-.foot {
-  padding: 24px $page-padding-mobile;
+.footer {
+  padding: 16px $page-padding-mobile;
   font-family: $font-mono;
   font-size: 12px;
   color: $ink-mute;
@@ -13,14 +13,14 @@
   }
 
   @media (min-width: $bp-tablet) {
-    padding: 32px $page-padding-desktop;
+    padding: 16px $page-padding-desktop;
   }
 }
 
-.foot-inner {
+.footer-inner {
   display: flex;
   flex-direction: column-reverse;
-  gap: 16px;
+  gap: 8px;
   justify-content: space-between;
   align-items: center;
   text-align: center;
@@ -38,7 +38,7 @@
   }
 }
 
-.foot-links {
+.footer-links {
   display: flex;
   gap: 20px;
 

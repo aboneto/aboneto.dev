@@ -116,6 +116,8 @@
     a {
       color: $accent;
       text-decoration: none;
+      min-height: auto;
+      display: inline;
 
       &:hover {
         color: $accent-bright;
