@@ -43,11 +43,59 @@
       "skillPath": "skills/caveman-stats/SKILL.md",
       "computedHash": "47ce2de3d6cb39a75047b5c962e4eb3da15594e7397c94103e9a104d42626553"
     },
+    "code-review": {
+      "source": "secondsky/claude-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/code-review/skills/code-review/SKILL.md",
+      "computedHash": "4bfb42c56a24792101f3e8271e657bbb59651d9fd23178c914925245aef736e1"
+    },
+    "dispatching-parallel-agents": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "skillPath": "skills/dispatching-parallel-agents/SKILL.md",
+      "computedHash": "e21044ae7496fc285f1df9ff3fb518a3a20bea6f5216c1f59f4987e12c769a0a"
+    },
+    "frontend-design": {
+      "source": "secondsky/claude-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/frontend-design/skills/frontend-design/SKILL.md",
+      "computedHash": "d8ca7e019da4356acf3cb29d05ac5579a0bf3c92f225c76ebe7cc00dee496588"
+    },
+    "mobile-first-design": {
+      "source": "secondsky/claude-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/mobile-first-design/skills/mobile-first-design/SKILL.md",
+      "computedHash": "eae6bad38c2469870656c1449129a4c0c984fd8d841f435c60a9233dae321055"
+    },
+    "responsive-web-design": {
+      "source": "secondsky/claude-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/responsive-web-design/skills/responsive-web-design/SKILL.md",
+      "computedHash": "e7b09a592129115d711803a7213b16c0626903eeba18dca10127dd126e062081"
+    },
     "sass-best-practices": {
       "source": "mindrally/skills",
       "sourceType": "github",
       "skillPath": "sass-best-practices/SKILL.md",
       "computedHash": "6a234f57e66775c02116b317cc77d71eaeaa8f4162c77511fd88a2b600c41031"
+    },
+    "semantic-html": {
+      "source": "schalkneethling/webdev-agent-skills",
+      "sourceType": "github",
+      "skillPath": "semantic-html/SKILL.md",
+      "computedHash": "67a71a5ff7208259bb06dc5b1cb06a182a657529efe024b63cd9e7647de4258a"
+    },
+    "subagent-driven-development": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "skillPath": "skills/subagent-driven-development/SKILL.md",
+      "computedHash": "b38be2f3a092d758127f6d47e77c2493885aebf38aae359e4c786df2c343b837"
+    },
+    "verification-before-completion": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "skillPath": "skills/verification-before-completion/SKILL.md",
+      "computedHash": "9b446f0c7fe1cfb560b1d34439523b1a76d5f177290007b2c053a1c749a4a8ba"
     }
   }
 }
