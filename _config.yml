@@ -46,6 +46,7 @@ exclude:
   - .claude/
   - .opencode/
   - .rtk/
+  - docs/
   - openspec/
   - scripts/
   - Gemfile
