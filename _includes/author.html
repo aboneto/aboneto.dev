@@ -19,7 +19,7 @@
       <dd>{{ author.location }}</dd>
       <dt>writes_about</dt>
       <dd>{{ author.writes_about }}</dd>
-      <dt>contact</dt>
+      <dt>links</dt>
       {% for link in author.links %}
       <dd><a href="{{ link.href }}" target="_blank">→ {{ link.label | downcase }}</a></dd>
       {% endfor %}
