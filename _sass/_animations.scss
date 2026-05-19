@@ -1,3 +1,9 @@
 @keyframes blink {
   50% { opacity: 0; }
 }
+
+@keyframes error-flash {
+  0%, 100% { color: inherit; }
+  25% { color: #ff6b6b; }
+  75% { color: #ff6b6b; }
+}

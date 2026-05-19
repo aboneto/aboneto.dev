@@ -1,0 +1,16 @@
+---
+layout: default
+---
+
+<div class="cat-head">
+  <div class="crumb">~<span class="slash">/</span>aboneto.dev<span class="slash">/</span><span class="accent">categorias</span></div>
+  <h1><span class="hash">$ </span>ls -la</h1>
+  <div class="archive-stats">
+    <span><span class="k">total:</span>{{ site.categories.size }} directorios</span>
+    <span><span class="k">posts:</span>{{ site.posts.size }}</span>
+  </div>
+</div>
+
+<div class="archive-content">
+  {% include category-list.html %}
+</div>
