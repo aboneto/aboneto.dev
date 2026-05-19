@@ -1,0 +1,32 @@
+{
+  "name": "aboneto.dev",
+  "version": "1.0.0",
+  "description": "Blog personal de tecnología de Antonio Barbosa — Software Engineer con más de 19 años de experiencia en arquitectura de software, infraestructura, IA aplicada y liderazgo técnico.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {
+    "playwright": "^1.60.0",
+    "playwright-core": "^1.60.0"
+  },
+  "devDependencies": {
+    "jest": "^30.4.2",
+    "jest-environment-jsdom": "^30.4.1"
+  },
+  "scripts": {
+    "test": "jest --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aboneto/aboneto.dev.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/aboneto/aboneto.dev/issues"
+  },
+  "homepage": "https://github.com/aboneto/aboneto.dev#readme"
+}

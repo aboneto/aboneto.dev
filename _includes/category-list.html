@@ -1,0 +1,22 @@
+<div class="category-list">
+  <div class="category-list-label">// {{ site.categories | size }} directorios · ordenados por volumen</div>
+  {% assign category_pairs = "" | split: "" %}
+  {% for cat in site.categories %}
+    {% assign padded = cat[1].size | prepend: "0000" | slice: -5, 5 %}
+    {% assign pair = padded | append: "|" | append: cat[0] %}
+    {% assign category_pairs = category_pairs | push: pair %}
+  {% endfor %}
+  {% assign sorted_pairs = category_pairs | sort | reverse %}
+  {% for pair in sorted_pairs %}
+    {% assign parts = pair | split: "|" %}
+    {% assign cat_name = parts[1] %}
+    {% assign cat_posts = site.categories[cat_name] %}
+  <a href="/categoria/{{ cat_name | slugify }}/" class="category-list-item">
+    <span class="category-list-num">{{ forloop.index | prepend: '00' | slice: -2, 2 }}.</span>
+    <span>
+      <div class="category-list-title">{{ cat_name }}</div>
+    </span>
+    <span class="category-list-count">{{ cat_posts.size }} posts</span>
+  </a>
+  {% endfor %}
+</div>

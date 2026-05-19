@@ -57,3 +57,9 @@ exclude:
   - opencode.json
   - skills-lock.json
   - assets/images
+  - test
+  - node_modules
+  - package.json
+  - package-lock.json
+  - README.md
+  - jest.config.js
