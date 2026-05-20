@@ -29,6 +29,27 @@
     user-select: none;
   }
 
+  .cat-link {
+    text-decoration: none;
+    color: inherit;
+    border-radius: 2px;
+    min-height: unset;
+    min-width: unset;
+    display: inline;
+
+    &:hover .str,
+    &:focus-visible .str {
+      color: $accent-bright;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    &:focus-visible {
+      outline: 1px solid $accent;
+      outline-offset: 2px;
+    }
+  }
+
   @media (min-width: $bp-tablet) {
     font-size: 13px;
     padding: 18px 22px;
