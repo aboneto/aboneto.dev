@@ -10,7 +10,7 @@ layout: default
       <div><span class="k">date:</span> <span class="accent">{{ page.date | date: '%Y-%m-%d' }}</span></div>
       <div><span class="k">reading_time:</span> <span class="accent">{% include reading_time.html post=page %}</span>
         min</div>
-      <div><span class="k">categories:</span> [{% for cat in page.categories %}<span class="str">"{{ cat }}"</span>{%
+      <div><span class="k">categories:</span> [{% for cat in page.categories %}{% assign cat_slug = cat | slugify %}<a class="cat-link" href="{{ '/categoria/' | append: cat_slug | append: '/' | relative_url }}"><span class="str">"{{ cat }}"</span></a>{%
         unless forloop.last %}, {% endunless %}{% endfor %}]</div>
       <div><span class="dashes">---</span></div>
     </div>
