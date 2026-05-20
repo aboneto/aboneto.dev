@@ -5,16 +5,16 @@ date: 2026-05-18
 categories: [Vibe Coding, Artificial Intelligence, Cost Optimization, Llm Engineering]
 tags: [multi-agente, agentes, tokens, contexto, arquitectura]
 excerpt: "Cuando alguien empieza a operar con agentes, el primer instinto suele ser cargar al main agent con todas las skills disponibles, todas las herramientas conectadas y un system prompt gigante donde se..."
-image: /assets/img/multi-agente-contexto.webp
+image: /assets/img/multi-agent-context.webp
 ---
 
-![Multi-Agente](/assets/img/multi-agente-contexto.webp)
+![Arquitectura multi-agente con orquestador y subagentes especializados](/assets/img/multi-agent-context.webp)
 
 *Trabajar con múltiples agentes especializados no es solo una cuestión de paralelizar tareas. Es una decisión arquitectónica con impacto directo sobre el consumo de tokens, la limpieza del contexto principal y la escalabilidad operativa de tu flujo de trabajo con IA.*
 
 Cuando alguien empieza a operar con agentes, el primer instinto suele ser cargar al *main agent* con todas las skills disponibles, todas las herramientas conectadas y un *system prompt* gigante donde se intenta cubrir cualquier escenario imaginable. Funciona, pero la sesión se vuelve lenta, la factura mensual escala sin justificación clara y, lo peor, el agente empieza a perder foco porque tiene demasiada información compitiendo por su atención en cada turno.
 
-La salida no es un modelo más grande ni un *context window* más amplio. La salida es arquitectónica: especializar agentes para cada tipo de tarea y delegar la ejecución, dejando al orquestador con la mínima responsabilidad necesaria. Esta estrategia importa mucho más de lo que parece, y se traduce en ahorro real de tokens y mayor robustez operativa.
+La solución no es un modelo más grande ni un *context window* más amplio. La solución es arquitectónica: especializar agentes para cada tipo de tarea y delegar la ejecución, dejando al orquestador con la mínima responsabilidad necesaria. Esta estrategia importa mucho más de lo que parece, y se traduce en ahorro real de tokens y mayor robustez operativa.
 
 ## Aislar contexto es como aislar funciones
 
@@ -46,25 +46,296 @@ Y acá hay otro punto crítico: los modelos actuales operan con ventanas de cont
 
 ## Contexto adicional bajo demanda
 
-Cada subagente puede tener su propio contexto adicional cargado únicamente cuando se activa. En la práctica, este contexto suele materializarse en un archivo tipo `AGENTS.md` o `CLAUDE.md` específico del subagente, con instrucciones, convenciones y conocimiento de dominio que solo aplican a las tareas que ese agente ejecuta. Es una mecánica similar a la de una skill, pero aplicada a un agente completo.
+Cada subagente puede tener su propio contexto adicional cargado únicamente cuando se activa. En la práctica, este contexto suele materializarse en un archivo markdown ([Claude](https://code.claude.com/docs/en/sub-agents), [Opencode](https://opencode.ai/docs/es/agents/#subagentes), [Gemini](https://github.com/google-gemini/gemini-cli/blob/main/docs/core/subagents.md)) o toml ([Codex](https://developers.openai.com/codex/subagents)) específico del subagente, con instrucciones, convenciones y conocimiento de dominio que solo aplican a las tareas que ese agente ejecuta. Es una mecánica similar a la de una skill, pero aplicada a un agente completo.
 
-Tu agente principal conoce las reglas generales del proyecto, las convenciones de naming, la estructura del repositorio, definidas por ejemplo en el archivo `AGENTS.md` raíz del proyecto. Pero cuando necesitas resolver una tarea de seguridad, delegas a un agente que arranca con su propio `AGENTS.md` especializado: *checklists* de auditoría, referencias a CVEs relevantes y un *system prompt* afinado para revisar código en busca de vulnerabilidades. Ese contexto pesado solo entra en juego cuando hace falta, no consume tokens del *main thread* y se descarta cuando la subtarea termina.
+Tu agente principal conoce las reglas generales del proyecto, las convenciones de naming, la estructura del repositorio, definidas por ejemplo en el archivo `AGENTS.md` en la raíz del proyecto. Pero cuando necesitas resolver una tarea de seguridad, delegas a un agente que arranca con su propio contexto especializado: *checklists* de auditoría, referencias a CVEs relevantes y un *system prompt* afinado para revisar código en busca de vulnerabilidades. Ese contexto pesado solo entra en juego cuando hace falta, no consume tokens del *main thread* y se descarta cuando la subtarea termina.
 
 Este patrón te permite operar con bases de conocimiento mucho más profundas de lo que tu sesión principal podría sostener si tuviera que cargar todo al mismo tiempo.
 
 ## Skills: el impuesto que pagas en cada iteración
 
-Las skills consumen tokens del contexto principal en cada iteración. No importa si estás usando una skill o no en ese turno, el modelo necesita saber cuáles tiene disponibles. Para que el agente decida bien cuándo invocar una skill, el sistema le muestra en cada turno la lista completa con su título y descripción.
+Las skills consumen tokens del contexto principal en cada iteración. No importa si estás usando una skill o no en ese turno: el modelo necesita saber cuáles tiene disponibles. Para que el agente decida bien cuándo invocar una skill, el sistema le muestra en cada turno la lista completa con su título y descripción.
 
 Multiplica eso por la cantidad de skills instaladas y vas a entender por qué un proyecto con 25 o 30 skills empieza a notarse en la factura, incluso cuando aparentemente "no estás haciendo nada raro". Cada conversación arranca con ese *overhead* fijo y lo paga en cada turno.
 
 La arquitectura multi-agente resuelve este problema:
 
-- **El agente principal solo carga las skills que necesita para la orquestación y la definición de especificaciones**: Planificación, generación de specs, gestión de tareas y delegación.
+- **El agente principal solo carga las skills que necesita para la orquestación y la definición de especificaciones**: planificación, generación de specs, gestión de tareas y delegación.
 - **Las skills específicas se asignan a los subagentes responsables de ejecutar esas tareas**: Una skill de auditoría de seguridad vive en el agente de seguridad. Una skill de generación de tests unitarios vive en el agente de pruebas automatizadas. Una skill de migración de bases de datos vive en el agente que toca infraestructura.
 - **El resultado**: El agente principal queda más liviano, paga menos overhead por turno, y puedes instalar un volumen mucho mayor de skills en tu proyecto sin saturar la sesión principal.
 
 Es la misma lógica que aplicamos al diseñar microservicios: no todo el código vive en el mismo proceso. Cada servicio carga solo las dependencias que necesita.
+
+Pero lamentablemente esto no está habilitado en todos los proveedores ni de la misma forma. Veamos cada caso:
+
+### Claude Code
+
+Claude logra aislar las skills de un agente personalizado a la perfección, respetando la definición del agente y listando solamente las skills que existen en su carpeta:
+
+![Claude listando solamente las skills definidas para el agente](/assets/img/claude-skills-conocidas.webp)
+
+Estructura de carpetas:
+```
+.claude/
+├── agents/
+│   └── code-reviewer.md
+│   └── skills/
+│       └── code-reviewer/
+│           ├── code-review/
+│           │   ├── SKILL.md
+│           │   └── references/
+│           │       ├── code-review-reception.md
+│           │       ├── requesting-code-review.md
+│           │       └── verification-before-completion.md
+│           ├── frontend-design/
+│           │   └── SKILL.md
+│           ├── javascript-pro/
+│           │   ├── SKILL.md
+│           │   └── references/
+│           │       ├── async-patterns.md
+│           │       ├── browser-apis.md
+│           │       ├── modern-syntax.md
+│           │       ├── modules.md
+│           │       └── node-essentials.md
+│           ├── javascript-typescript-jest/
+│           │   └── SKILL.md
+│           ├── mobile-first-design/
+│           │   └── SKILL.md
+│           ├── responsive-web-design/
+│           │   └── SKILL.md
+│           └── semantic-html/
+│               ├── SKILL.md
+│               └── references/
+│                   ├── element-decision-trees.md
+│                   └── heading-patterns.md
+```
+
+Definición del agente:
+
+```markdown
+---
+name: code-reviewer
+description: Reviews pull requests and code changes for quality, security, and performance.
+tools: [Read, Grep, Glob, Bash(ls *)]
+color: green
+---
+
+You are a code review specialist. Your skills are located at
+`.claude/agents/skills/code-reviewer/`. Before reviewing any code,
+list that directory and load the relevant SKILL.md files.
+```
+
+Al solicitar a Claude usando el agente `code-reviewer` que me responda una información contenida en la skill `frontend-design` sin mencionar la skill directamente, él logró detectar la skill automáticamente y cargarla en su contexto:
+
+![Claude leyendo la skill del agente automáticamente](/assets/img/claude-leyendo-skill.webp)
+
+Luego me respondió con exactitud la información de la skill, sin alucinar o tener que buscar más información:
+
+![Claude respondiendo con la información de la skill frontend-design](/assets/img/claude-respondiendo-con-skill.webp)
+
+### Gemini y Antigravity
+
+Gemini y Antigravity siguen las instrucciones del agente y logran detectar bien las skills conocidas y habilitadas, mezclando las del proyecto, del usuario y las específicas del agente:
+
+![Skills conocidas por el agente code-reviewer en Gemini](/assets/img/gemini-skills-conocidas.webp)
+
+Estructura de carpetas:
+```
+.gemini/
+├── agents/
+│   └── code-reviewer.md
+│   └── skills/
+│       └── code-reviewer/
+│           ├── code-review/
+│           │   ├── SKILL.md
+│           │   └── references/
+│           │       ├── code-review-reception.md
+│           │       ├── requesting-code-review.md
+│           │       └── verification-before-completion.md
+│           ├── frontend-design/
+│           │   └── SKILL.md
+│           ├── javascript-pro/
+│           │   ├── SKILL.md
+│           │   └── references/
+│           │       ├── async-patterns.md
+│           │       ├── browser-apis.md
+│           │       ├── modern-syntax.md
+│           │       ├── modules.md
+│           │       └── node-essentials.md
+│           ├── javascript-typescript-jest/
+│           │   └── SKILL.md
+│           ├── mobile-first-design/
+│           │   └── SKILL.md
+│           ├── responsive-web-design/
+│           │   └── SKILL.md
+│           └── semantic-html/
+│               ├── SKILL.md
+│               └── references/
+│                   ├── element-decision-trees.md
+│                   └── heading-patterns.md
+```
+
+Definición del agente:
+
+```markdown
+---
+name: code-reviewer
+description: Reviews pull requests and code changes for quality, security, and performance.
+---
+
+You are a code review specialist. Your skills are located at
+`.gemini/agents/skills/code-reviewer/`. Before reviewing any code,
+list that directory and load the relevant SKILL.md files.
+```
+
+Al preguntar por un determinado contenido de una skill `frontend-design`, sin permitir acceso a internet y solamente usando skills, el agente fue capaz de leer la skill y responder:
+
+![Gemini respondiendo con base en el contenido de la skill frontend-design](/assets/img/gemini-respondiendo-con-skill.webp)
+
+### Codex
+
+Codex no permite definir skills específicas para un agente, pero sí limitar su uso.
+
+Estructura de carpetas:
+```
+.codex/
+├── agents/
+│   └── code-reviewer.toml
+└── skills/
+    ├── frontend-design/
+    │   └── SKILL.md
+    ├── javascript-pro/
+    │   ├── SKILL.md
+    │   └── references/
+    │       ├── async-patterns.md
+    │       ├── browser-apis.md
+    │       ├── modern-syntax.md
+    │       ├── modules.md
+    │       └── node-essentials.md
+    ├── javascript-typescript-jest/
+    │   └── SKILL.md
+    ├── mobile-first-design/
+    │   └── SKILL.md
+    ├── responsive-web-design/
+    │   └── SKILL.md
+    └── semantic-html/
+        ├── SKILL.md
+        └── references/
+            ├── element-decision-trees.md
+            └── heading-patterns.md
+```
+
+Definición del agente:
+
+```toml
+name = "code-reviewer"
+description = "PR reviewer focused on correctness, security, and missing tests."
+model = "gpt-5.5"
+model_reasoning_effort = "high"
+sandbox_mode = "read-only"
+
+developer_instructions = """
+You are a code review specialist. Use the code-review skill
+for structured reviews and cc-skill-security-review for security passes when available.
+Do not use javascript-pro; it is disabled for this agent.
+Be thorough but constructive.
+"""
+
+[[skills.config]]
+path = ".codex/skills/code-review/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = ".codex/skills/javascript-pro/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = ".codex/skills/mobile-first-design/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = ".codex/skills/javascript-typescript-jest/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = ".codex/skills/semantic-html/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = ".codex/skills/frontend-design/SKILL.md"
+enabled = true
+```
+
+Codex lanzando el subagente `code-reviewer`:
+
+![Codex lanzando el subagente code-reviewer](/assets/img/codex-lanzando-agent.webp)
+
+Podemos notar que Codex no pudo ejecutar la skill `javascript-pro` porque estaba deshabilitada:
+
+![Codex no pudo ejecutar la skill javascript-pro](/assets/img/codex-limitando-skill.webp)
+
+### Opencode
+
+Así como Codex, en Opencode solo podemos limitar las skills que un agente puede consumir, pero todavía no podemos definir un conjunto de skills específicas para usar.
+
+Estructura de carpetas:
+```
+.opencode/
+├── agents/
+│   └── code-reviewer.md
+└── skills/
+    ├── frontend-design/
+    │   └── SKILL.md
+    ├── javascript-pro/
+    │   ├── SKILL.md
+    │   └── references/
+    │       ├── async-patterns.md
+    │       ├── browser-apis.md
+    │       ├── modern-syntax.md
+    │       ├── modules.md
+    │       └── node-essentials.md
+    ├── javascript-typescript-jest/
+    │   └── SKILL.md
+    ├── mobile-first-design/
+    │   └── SKILL.md
+    ├── responsive-web-design/
+    │   └── SKILL.md
+    └── semantic-html/
+        ├── SKILL.md
+        └── references/
+            ├── element-decision-trees.md
+            └── heading-patterns.md
+```
+
+Definición del agente:
+
+```markdown
+---
+name: code-reviewer
+description: Reviews pull requests and code changes for quality, security, and performance.
+mode: primary
+temperature: 0.1
+color: "#00a732"
+tools:
+  write: false
+  edit: false
+  bash: false
+permission:
+  skill:
+    "*": deny
+    "code-review": allow
+    "javascript-pro": allow
+    "javascript-typescript-jest": allow
+    "semantic-html": allow
+    "frontend-design": allow
+---
+
+You are a code review specialist.
+```
+
+Podemos notar que Opencode no logró encontrar la skill `mobile-first-design` y usarla:
+
+![Opencode limitando el uso de la skill mobile-first-design](/assets/img/opencode-skill-utilization.webp)
 
 ## Otras ventajas operativas relevantes
 
@@ -88,9 +359,9 @@ Si quieres adoptar este patrón sin reorganizar todo tu flujo de trabajo de un d
 
 ## El costo de la complejidad: más madurez, no menos
 
-Trabajar con multi-agente no es gratis. Distribuir responsabilidades entre varios subagentes exige más madurez técnica y mayor disciplina de planificación que operar con una sola sesión que improvisa sobre la marcha. Es exactamente la misma curva que existe entre un monolito y una arquitectura de microservicios: ganas escalabilidad y aislamiento, pero pagas en coordinación, contratos claros y diseño previo.
+Trabajar con multi-agente no es gratis. Distribuir responsabilidades entre varios subagentes exige más madurez técnica y mayor disciplina de planificación que operar con una sola sesión que improvisa sobre la marcha. Es exactamente la misma curva que existe entre un monolito y una arquitectura de microservicios: ganas escalabilidad y aislamiento, pero pagas el precio en coordinación, contratos claros y diseño previo.
 
-El riesgo más concreto es éste: si delegas tareas mal definidas a un subagente, vas a obtener resultados ambiguos. El orquestador va a tener que pedir aclaraciones, reintentar, complementar con más contexto, y entrar en *loops* de ida y vuelta que terminan consumiendo más tokens que si hubieras resuelto todo en una sola sesión. La promesa de ahorro se evapora cuando la planificación es pobre.
+El riesgo más concreto es este: si delegas tareas mal definidas a un subagente, vas a obtener resultados ambiguos. El orquestador va a tener que pedir aclaraciones, reintentar, complementar con más contexto, y entrar en *loops* de ida y vuelta que terminan consumiendo más tokens que si hubieras resuelto todo en una sola sesión. La promesa de ahorro se evapora cuando la planificación es pobre.
 
 Por eso recomiendo apoyarse en un buen framework de *Spec-Driven Development* (SDD), donde primero defines con claridad qué quieres construir, qué entradas tiene cada subagente, qué resultado se espera y cuáles son los criterios de aceptación. Herramientas como [OpenSpec](https://github.com/Fission-AI/OpenSpec) o [GitHub Spec Kit](https://github.com/github/spec-kit) te permiten formalizar la especificación antes de empezar a ejecutar, dejando un artefacto que el orquestador y los subagentes pueden consultar sin reinterpretar la intención original en cada turno.
 
