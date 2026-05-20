@@ -1,0 +1,63 @@
+name: Notify New Post
+
+on:
+  push:
+    branches: ["master"]
+  workflow_dispatch:
+    inputs:
+      before_sha:
+        description: "SHA before the publish commit (leave empty to use HEAD~1)"
+        required: false
+        default: ""
+      sha:
+        description: "SHA of the publish commit (leave empty to use HEAD)"
+        required: false
+        default: ""
+
+concurrency:
+  group: notify-new-post
+  cancel-in-progress: false
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect added posts
+        id: detect
+        env:
+          BEFORE: ${{ github.event.before || inputs.before_sha }}
+          SHA: ${{ github.sha || inputs.sha }}
+          ZERO_SHA: "0000000000000000000000000000000000000000"
+        run: |
+          if [ "$BEFORE" = "$ZERO_SHA" ] || [ -z "$BEFORE" ]; then
+            # First push to branch — list all posts in head commit
+            added=$(git show --name-only --diff-filter=A --format="" "$SHA" -- _posts/)
+          else
+            added=$(git diff --name-only --diff-filter=A "$BEFORE..$SHA" -- _posts/)
+          fi
+          echo "Added posts:"
+          echo "$added"
+          # Store as multiline output
+          {
+            echo "posts<<EOF"
+            echo "$added"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Dispatch notifications
+        if: steps.detect.outputs.posts != ''
+        env:
+          ONESIGNAL_APP_ID: "3f9d8495-08e9-49c6-a644-dd497f13b73a"
+          ONESIGNAL_REST_API_KEY: ${{ secrets.ONESIGNAL_REST_API_KEY }}
+          SITE_URL: "https://aboneto.dev"
+        run: |
+          echo "${{ steps.detect.outputs.posts }}" | bash scripts/notify-new-posts.sh
+
+      - name: No new posts
+        if: steps.detect.outputs.posts == ''
+        run: echo "No new posts detected — skipping notification dispatch."

@@ -101,6 +101,52 @@ JEKYLL_ENV=production bundle exec jekyll build
 ./scripts/convert_to_webp.sh
 ```
 
+## Notificaciones Push (OneSignal)
+
+El sitio envía notificaciones push a suscriptores cuando se publica un nuevo post via GitHub Actions.
+
+### Setup inicial (una sola vez)
+
+1. Crear una app en [onesignal.com](https://onesignal.com) (plataforma: Web Push, origin: `https://aboneto.dev`).
+2. Copiar el **App ID** y pegarlo en `_config.yml` bajo `onesignal.app_id`.
+3. Generar una **REST API Key** en OneSignal → Settings → Keys & IDs.
+4. Añadir `ONESIGNAL_REST_API_KEY` como **Actions secret** en GitHub (Settings → Secrets and variables → Actions).
+5. Añadir `ONESIGNAL_APP_ID` como **Actions variable** (no secret — es público).
+6. Cambiar `onesignal.enabled: true` en `_config.yml` y hacer push.
+
+### Rotación de la REST API Key
+
+1. Generar nueva key en OneSignal dashboard.
+2. Actualizar el secret `ONESIGNAL_REST_API_KEY` en GitHub Actions.
+3. Revocar la key anterior en OneSignal.
+
+### Opt-out por post
+
+Añadir `notify: false` al front matter del post para que el workflow salte la notificación:
+
+```yaml
+---
+title: "Mi artículo"
+notify: false
+---
+```
+
+### Re-trigger manual
+
+Si el workflow falla por un error transitorio de OneSignal, se puede re-ejecutar desde la pestaña **Actions** en GitHub usando `workflow_dispatch`. El campo `before_sha` debe ser el SHA anterior al commit del post.
+
+El script usa `external_id` basado en el permalink del post, por lo que OneSignal descarta duplicados automáticamente si el primer envío llegó a completarse.
+
+### Troubleshooting
+
+| Síntoma | Causa probable | Acción |
+|---|---|---|
+| El prompt de suscripción no aparece | `onesignal.enabled: false` o `app_id` vacío | Verificar `_config.yml` |
+| El prompt aparece pero no se suscribe | Service worker no servido en `/OneSignalSDKWorker.js` | Verificar que el archivo esté en el build (`_site/`) |
+| Workflow en rojo con `401 Unauthorized` | `ONESIGNAL_REST_API_KEY` mal configurado | Verificar el secret en GitHub |
+| Workflow en rojo con `400 Bad Request` | `app_id` incorrecto o post sin `title` | Revisar los logs del step "Dispatch notifications" |
+| Notificación no llega tras dispatch exitoso | Sin suscriptores aún, o navegador bloqueó permisos | Verificar suscriptores en el dashboard de OneSignal |
+
 ## Licencia
 
 Este proyecto está bajo la Licencia MIT — ver el archivo [LICENSE](LICENSE) para más detalles.
