@@ -87,8 +87,9 @@ while IFS= read -r post_file; do
     body_text="$excerpt"
   fi
 
-  # Derive stable external_id from permalink/slug to prevent duplicate sends
-  external_id=$(echo "$post_url" | md5sum | awk '{print $1}')
+  # Derive stable external_id (UUIDv5) from post URL to prevent duplicate sends.
+  # OneSignal requires external_id to be a valid UUID.
+  external_id=$(python3 -c 'import sys, uuid; print(uuid.uuid5(uuid.NAMESPACE_URL, sys.argv[1]))' "$post_url")
 
   echo "DISPATCH: $title -> $post_url" >&2
 
