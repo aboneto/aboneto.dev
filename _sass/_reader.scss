@@ -258,6 +258,23 @@
     margin: 0 0 1.4em;
     padding: 0;
     list-style: none;
+
+    li {
+      &::before {
+        content: '\2192';
+      }
+    }
+  }
+
+  ol {
+    margin: 0 0 1.4em;
+    padding: 0;
+    list-style: decimal;
+
+    li {
+      padding-left: 0;
+      margin-left: 1.6em;
+    }
   }
 
   li {
@@ -266,8 +283,7 @@
     margin-bottom: 0.5em;
     color: $ink-soft;
 
-    &::before {
-      content: '\2192';
+    &::before, &::marker {
       position: absolute;
       left: 0;
       color: $accent;
