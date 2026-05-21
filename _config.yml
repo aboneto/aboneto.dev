@@ -3,7 +3,7 @@ onesignal:
   enabled: true
   app_id: "3f9d8495-08e9-49c6-a644-dd497f13b73a"
   safari_web_id: "web.onesignal.auto.1f13959d-363e-4480-ae37-ce4b59dbb72b"
-  prompt_delay_seconds: 30  # Seconds before slidedown appears on post pages
+  prompt_delay_seconds: 5  # Seconds before slidedown appears on post pages
 
 title: "aboneto.dev"
 description: "Escribo sobre IA aplicada, infraestructura y arquitectura. Cosas que pruebo, mido y uso en el día a día."
