@@ -5,10 +5,10 @@ date: 2026-05-13
 categories: [Continuous Calibration, Continuous Development, Llm As A Judge, Open Weight Model, Artificial Intelligence]
 tags: [llm-as-a-judge, evaluacion, langfuse, qwen, cc-cd, prompts]
 excerpt: "Los prompts en sistemas con Large Language Models (LLMs) no se comportan como código determinista. En un desarrollo de software tradicional, si modificas una función y todos los tests pasan, puedes..."
-image: /assets/img/llm-as-a-judge-eval-pipelines.webp
+image: /assets/img/llm-as-a-judge-eval-pipelines-2.webp
 ---
 
-![LLM-as-a-Judge](/assets/img/llm-as-a-judge-eval-pipelines.webp)
+![LLM-as-a-Judge](/assets/img/llm-as-a-judge-eval-pipelines-2.webp)
 
 Los prompts en sistemas con Large Language Models (LLMs) no se comportan como código determinista. En un desarrollo de software tradicional, si modificas una función y todos los tests pasan, puedes desplegar con confianza. Con los LLMs, un cambio mínimo en el prompt para mejorar el tono de una respuesta puede, inadvertidamente, hacer que el modelo deje de extraer una entidad clave o falle al invocar una herramienta externa (tool call). 
 
