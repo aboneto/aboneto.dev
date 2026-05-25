@@ -39,6 +39,9 @@ plugins:
   - jekyll-gzip
   - jekyll-minifier
 
+jekyll-minifier:
+  exclude: ['raw/**', 'llms.txt']
+
 jekyll-archives:
   enabled:
     - categories
