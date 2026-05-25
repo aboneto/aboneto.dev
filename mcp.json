@@ -1,0 +1,24 @@
+---
+layout: null
+permalink: /mcp.json
+---
+{
+  "mcpVersion": "1.0.0",
+  "name": "aboneto.dev AI Resource Server",
+  "version": "{{ site.version | default: '1.0.0' }}",
+  "resources": [
+    {% for post in site.posts %}
+    {
+      "uri": "{{ site.url }}{{ post.url | prepend: '/raw' | append: '.md' }}",
+      "name": {{ post.title | jsonify }},
+      "description": {{ post.description | default: post.excerpt | strip_html | strip_newlines | truncate: 150 | jsonify }},
+      "mimeType": "text/markdown",
+      "metadata": {
+        "date": "{{ post.date | date_to_xmlschema }}",
+        "tags": {{ post.tags | jsonify }},
+        "categories": {{ post.categories | jsonify }}
+      }
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+}

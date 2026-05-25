@@ -1,0 +1,22 @@
+---
+layout: null
+permalink: /llms.txt
+---
+# {{ site.title }}
+
+>{{ site.description }}
+
+## Artículos Disponibles
+{% for post in site.posts %}
+- [{{ post.title }}]({{ site.url }}{{ post.url | prepend: '/raw' | append: '.md' }}): {{ post.description | default: post.excerpt | strip_html | strip_newlines | truncate: 150 }}
+{% endfor %}
+{% assign author = site.data.author %}
+## {{ author.name }}
+
+{{ author.bio }}
+
+### Links
+
+{% for link in author.links %}
+- [{{ link.label | downcase }}]({{ link.href }})
+{% endfor %}
