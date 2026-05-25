@@ -49,6 +49,12 @@
       "skillPath": "plugins/code-review/skills/code-review/SKILL.md",
       "computedHash": "4bfb42c56a24792101f3e8271e657bbb59651d9fd23178c914925245aef736e1"
     },
+    "consult-claude": {
+      "source": "aboneto/skills",
+      "sourceType": "github",
+      "skillPath": "skills/consult-claude/SKILL.md",
+      "computedHash": "c4d060a4c72962b961fdce96ba40c631d2591a082b568665a17f30f73ec212ce"
+    },
     "dispatching-parallel-agents": {
       "source": "obra/superpowers",
       "sourceType": "github",
@@ -72,6 +78,12 @@
       "sourceType": "github",
       "skillPath": "skills/javascript-typescript-jest/SKILL.md",
       "computedHash": "0073d19ab0275eb6a8200aced6789a53744667bd717b5d1f44ce708a1740e5d4"
+    },
+    "jekyll": {
+      "source": "aboneto/skills",
+      "sourceType": "github",
+      "skillPath": "skills/jekyll/SKILL.md",
+      "computedHash": "c5684a2452b964cacc59b0c579766a272657a521c4fd274cec37a4b337c9b787"
     },
     "mobile-first-design": {
       "source": "secondsky/claude-skills",
