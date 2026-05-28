@@ -23,7 +23,7 @@
       "source": "JuliusBrussee/caveman",
       "sourceType": "github",
       "skillPath": "skills/caveman-compress/SKILL.md",
-      "computedHash": "f61268bc137909b25053b018de45d90afc3a856569088a9ef9e1d0fdc8147b35"
+      "computedHash": "b8cbfec00b620f0944960a9bb4072f262cf816c1d3c82e6dbded35c30b4c5d0b"
     },
     "caveman-help": {
       "source": "JuliusBrussee/caveman",
@@ -83,7 +83,7 @@
       "source": "aboneto/skills",
       "sourceType": "github",
       "skillPath": "skills/jekyll/SKILL.md",
-      "computedHash": "c5684a2452b964cacc59b0c579766a272657a521c4fd274cec37a4b337c9b787"
+      "computedHash": "bc62efb4c6430d9b113be5ed350f296af67f06b4664ae7417451bb47e601dd69"
     },
     "mobile-first-design": {
       "source": "secondsky/claude-skills",
