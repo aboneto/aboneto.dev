@@ -68,6 +68,8 @@
   a {
     color: $accent;
     text-decoration: underline;
+    min-width: auto;
+    min-height: auto;
   }
 
   p {

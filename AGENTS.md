@@ -35,6 +35,19 @@ bundle exec jekyll build    # build estático
 - **Posts:** En español
 - **Sintaxis SCSS:** Usar siempre `.scss` con llaves `{}` y punto y coma `;`. NUNCA usar sintaxis indentada `.sass`
 
+## Writing Conventions for Spanish Posts
+
+- **Registro:** Usar tuteo español estándar (tú), NO voseo argentino (vos)
+  - ✅ "imaginas", "superas", "pagas", "quieres", "puedes", "eres"
+  - ❌ "imaginás", "superás", "pagás", "querés", "podés", "sos"
+- **Números decimales:** Usar punto como separador decimal (estilo internacional)
+  - ✅ "48.32%", "$50.31"
+  - ❌ "48,32%", "$50,31"
+- **Monedas:** No redundar símbolo y palabra
+  - ✅ "$6", "$10", "6 dólares"
+  - ❌ "$6 dólares", "$10 dólares"
+- **Consistencia:** Mantener el mismo registro en todo el texto (evitar mezclar tuteo/voseo)
+
 ## Design System (from mockup)
 
 - **Palette:** `--bg: #0a1530`, `--accent: #7aa2ff`, `--green: #7ad6a3`
